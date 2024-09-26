@@ -1,0 +1,613 @@
+{
+	"folders": [
+		{
+			"name": "HorrorProject",
+			"path": "."
+		},
+		{
+			"name": "UE5",
+			"path": "D:\\Task\\UE\\Engine\\UE_5.4"
+		}
+	],
+	"settings": {
+		"typescript.tsc.autoDetect": "off",
+		"npm.autoDetect": "off"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-vscode.cpptools",
+			"ms-dotnettools.csharp"
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "HorrorProject Win64 Debug Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"HorrorProject",
+					"Win64",
+					"Debug",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProject Win64 Debug Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"HorrorProject",
+					"Win64",
+					"Debug",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"HorrorProject Win64 Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProject Win64 Debug Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"HorrorProject",
+					"Win64",
+					"Debug",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProject Win64 DebugGame Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"HorrorProject",
+					"Win64",
+					"DebugGame",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProject Win64 DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"HorrorProject",
+					"Win64",
+					"DebugGame",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"HorrorProject Win64 DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProject Win64 DebugGame Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"HorrorProject",
+					"Win64",
+					"DebugGame",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProject Win64 Development Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"HorrorProject",
+					"Win64",
+					"Development",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProject Win64 Development Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"HorrorProject",
+					"Win64",
+					"Development",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"HorrorProject Win64 Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProject Win64 Development Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"HorrorProject",
+					"Win64",
+					"Development",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProject Win64 Test Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"HorrorProject",
+					"Win64",
+					"Test",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProject Win64 Test Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"HorrorProject",
+					"Win64",
+					"Test",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"HorrorProject Win64 Test Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProject Win64 Test Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"HorrorProject",
+					"Win64",
+					"Test",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProject Win64 Shipping Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"HorrorProject",
+					"Win64",
+					"Shipping",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProject Win64 Shipping Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"HorrorProject",
+					"Win64",
+					"Shipping",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"HorrorProject Win64 Shipping Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProject Win64 Shipping Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"HorrorProject",
+					"Win64",
+					"Shipping",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProjectEditor Win64 Debug Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"HorrorProjectEditor",
+					"Win64",
+					"Debug",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProjectEditor Win64 Debug Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"HorrorProjectEditor",
+					"Win64",
+					"Debug",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"HorrorProjectEditor Win64 Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProjectEditor Win64 Debug Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"HorrorProjectEditor",
+					"Win64",
+					"Debug",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProjectEditor Win64 DebugGame Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"HorrorProjectEditor",
+					"Win64",
+					"DebugGame",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProjectEditor Win64 DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"HorrorProjectEditor",
+					"Win64",
+					"DebugGame",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"HorrorProjectEditor Win64 DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProjectEditor Win64 DebugGame Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"HorrorProjectEditor",
+					"Win64",
+					"DebugGame",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProjectEditor Win64 Development Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"HorrorProjectEditor",
+					"Win64",
+					"Development",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProjectEditor Win64 Development Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"HorrorProjectEditor",
+					"Win64",
+					"Development",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"HorrorProjectEditor Win64 Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"label": "HorrorProjectEditor Win64 Development Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"HorrorProjectEditor",
+					"Win64",
+					"Development",
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			}
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Launch HorrorProject (Debug)",
+				"request": "launch",
+				"program": "D:\\Task\\GitHub\\HorrorProject\\Binaries\\Win64\\UnrealGame-Win64-Debug.exe",
+				"preLaunchTask": "HorrorProject Win64 Debug Build",
+				"args": [
+				],
+				"cwd": "D:\\Task\\UE\\Engine\\UE_5.4",
+				"stopAtEntry": false,
+				"console": "integratedTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"name": "Launch HorrorProject (DebugGame)",
+				"request": "launch",
+				"program": "D:\\Task\\GitHub\\HorrorProject\\Binaries\\Win64\\UnrealGame-Win64-DebugGame.exe",
+				"preLaunchTask": "HorrorProject Win64 DebugGame Build",
+				"args": [
+				],
+				"cwd": "D:\\Task\\UE\\Engine\\UE_5.4",
+				"stopAtEntry": false,
+				"console": "integratedTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"name": "Launch HorrorProject (Development)",
+				"request": "launch",
+				"program": "D:\\Task\\GitHub\\HorrorProject\\Binaries\\Win64\\UnrealGame.exe",
+				"preLaunchTask": "HorrorProject Win64 Development Build",
+				"args": [
+				],
+				"cwd": "D:\\Task\\UE\\Engine\\UE_5.4",
+				"stopAtEntry": false,
+				"console": "integratedTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"name": "Launch HorrorProject (Test)",
+				"request": "launch",
+				"program": "D:\\Task\\GitHub\\HorrorProject\\Binaries\\Win64\\UnrealGame-Win64-Test.exe",
+				"preLaunchTask": "HorrorProject Win64 Test Build",
+				"args": [
+				],
+				"cwd": "D:\\Task\\UE\\Engine\\UE_5.4",
+				"stopAtEntry": false,
+				"console": "integratedTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"name": "Launch HorrorProject (Shipping)",
+				"request": "launch",
+				"program": "D:\\Task\\GitHub\\HorrorProject\\Binaries\\Win64\\UnrealGame-Win64-Shipping.exe",
+				"preLaunchTask": "HorrorProject Win64 Shipping Build",
+				"args": [
+				],
+				"cwd": "D:\\Task\\UE\\Engine\\UE_5.4",
+				"stopAtEntry": false,
+				"console": "integratedTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"name": "Launch HorrorProjectEditor (Debug)",
+				"request": "launch",
+				"program": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Binaries\\Win64\\UnrealEditor-Win64-Debug.exe",
+				"preLaunchTask": "HorrorProjectEditor Win64 Debug Build",
+				"args": [
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject"
+				],
+				"cwd": "D:\\Task\\UE\\Engine\\UE_5.4",
+				"stopAtEntry": false,
+				"console": "integratedTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"name": "Launch HorrorProjectEditor (DebugGame)",
+				"request": "launch",
+				"program": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Binaries\\Win64\\UnrealEditor-Win64-DebugGame.exe",
+				"preLaunchTask": "HorrorProjectEditor Win64 DebugGame Build",
+				"args": [
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject"
+				],
+				"cwd": "D:\\Task\\UE\\Engine\\UE_5.4",
+				"stopAtEntry": false,
+				"console": "integratedTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"name": "Launch HorrorProjectEditor (Development)",
+				"request": "launch",
+				"program": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+				"preLaunchTask": "HorrorProjectEditor Win64 Development Build",
+				"args": [
+					"D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject"
+				],
+				"cwd": "D:\\Task\\UE\\Engine\\UE_5.4",
+				"stopAtEntry": false,
+				"console": "integratedTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "D:\\Task\\UE\\Engine\\UE_5.4"
+				}
+			},
+			{
+				"name": "Generate Project Files",
+				"type": "coreclr",
+				"request": "launch",
+				"preLaunchTask": "UnrealBuildTool Win64 Development Build",
+				"program": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Build\\BatchFiles\\RunUBT.bat",
+				"args": [
+					"-projectfiles",
+					"-vscode",
+					"-project=D:\\Task\\GitHub\\HorrorProject\\HorrorProject.uproject",
+					"-game",
+					"-engine",
+					"-dotnet"
+				],
+				"console": "integratedTerminal",
+				"stopAtEntry": false,
+				"cwd": "D:\\Task\\UE\\Engine\\UE_5.4"
+			}
+		]
+	}
+}
