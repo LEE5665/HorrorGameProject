@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "../../BaseActor/BaseDoor.h"
 #include "InteractComponent.h"
 #include "GameFramework/Actor.h"
-#include "../InteractInterface.h"
 #include "DrawDebugHelpers.h"
 
 // Sets default values for this component's properties
@@ -22,14 +22,14 @@ void UInteractComponent::BeginPlay()
 	if (InteractionWidgetClass)
 	{
 		InteractionWidget = CreateWidget<UUserWidget>(GetWorld(), InteractionWidgetClass);
-		
+
 		if (InteractionWidget)
 		{
 			InteractionWidget->AddToViewport();
 			InteractionWidget->SetVisibility(ESlateVisibility::Hidden);
 		}
 	}
-	AActor* Owner = GetOwner();
+	AActor *Owner = GetOwner();
 	if (Owner && Owner->InputComponent)
 	{
 		Owner->InputComponent->BindAction("IA_Interact", IE_Pressed, this, &UInteractComponent::Interact);
@@ -49,7 +49,7 @@ void UInteractComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 	TraceParams.AddIgnoredActor(GetOwner());
 
 	bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, TraceParams);
-	//DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 1.0f, 0, 2.0f);
+	// DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 1.0f, 0, 2.0f);
 
 	if (bHit && HitResult.GetActor())
 	{
@@ -58,7 +58,9 @@ void UInteractComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 			nHitActor = HitResult.GetActor();
 			InteractionWidget->SetVisibility(ESlateVisibility::Visible);
 		}
-	} else {
+	}
+	else
+	{
 		nHitActor = nullptr;
 		InteractionWidget->SetVisibility(ESlateVisibility::Hidden);
 	}
@@ -70,19 +72,11 @@ void UInteractComponent::Interact()
 	{
 		if (nHitActor->ActorHasTag(FName("Door")))
 		{
-			InteractionWidget->SetVisibility(ESlateVisibility::Visible);
-			AActor *HitActor = nHitActor;
-			TArray<UActorComponent *> InteractableComponents = HitActor->GetComponentsByInterface(UInteractInterface::StaticClass());
-			if (InteractableComponents.Num() > 0)
+			ABaseDoor *DoorActor = Cast<ABaseDoor>(nHitActor);
+			if (DoorActor)
 			{
-				UActorComponent *InteractionComp = InteractableComponents[0];
-
-				if (InteractionComp)
-				{
-					//FString InteractionText = IInteractInterface::Execute_GetName(InteractionComp);
-					IInteractInterface::Execute_Interact(InteractionComp);
-					//UE_LOG(LogTemp, Log, TEXT("Interaction Name: %s"), *InteractionText);
-				}
+				DoorActor->Interact();
+				UE_LOG(LogTemp, Log, TEXT("Interacted with Door!"));
 			}
 		}
 	}
