@@ -58,6 +58,11 @@ void UInteractComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 			nHitActor = HitResult.GetActor();
 			InteractionWidget->SetVisibility(ESlateVisibility::Visible);
 		}
+		else
+		{
+			nHitActor = nullptr;
+			InteractionWidget->SetVisibility(ESlateVisibility::Hidden);
+		}
 	}
 	else
 	{
