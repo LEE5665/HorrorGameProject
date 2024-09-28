@@ -38,6 +38,9 @@ class ATP_ThirdPersonCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LookAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* Interact;
+
 public:
 	ATP_ThirdPersonCharacter();
 	
@@ -49,6 +52,8 @@ protected:
 
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
+
+	void interact();
 			
 
 protected:
@@ -59,6 +64,7 @@ protected:
 	virtual void BeginPlay();
 
 public:
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
+	class UInteractComponent* InteractComponent;
 };
 
