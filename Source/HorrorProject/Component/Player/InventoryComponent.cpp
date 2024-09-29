@@ -22,9 +22,14 @@ void UInventoryComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	Inventory.SetNum(InventorySlot);
-	for (int i = 0; i < Inventory.Num(); i++)
+	if (InventoryWidgetClass)
 	{
-		UE_LOG(LogTemp, Log, TEXT("1"));
+		InventoryWidget = CreateWidget<UInventoryWidget>(GetWorld(), InventoryWidgetClass);
+		if (InventoryWidget)
+		{
+			InventoryWidget->SetInventoryComponent(this);
+			InventoryWidget->AddToViewport();
+		}
 	}
 }
 
@@ -56,15 +61,6 @@ void UInventoryComponent::loadinventory()
 					UE_LOG(LogTemp, Log, TEXT("아이템 이름: %s, 수량: %d"), *FoundItem->Name.ToString(), Inventory[i].Itemcount);
 				}
 			}
-		}
-	}
-	if (InventoryWidgetClass)
-	{
-		InventoryWidget = CreateWidget<UInventoryWidget>(GetWorld(), InventoryWidgetClass);
-		if (InventoryWidget)
-		{
-			InventoryWidget->SetInventoryComponent(this);
-			InventoryWidget->AddToViewport();
 		}
 	}
 }
@@ -102,6 +98,9 @@ void UInventoryComponent::DropItem(int32 Number)
 					SpawnedItem->itemdata.Itemcount=1;
 				}
 				Inventory[Number].Itemcount--;
+				if(Inventory[Number].Itemcount == 0){
+					Inventory[Number].ItemID.RowName = FName("None");
+				}
 				reloadinventory(Number);
 			}
 		}

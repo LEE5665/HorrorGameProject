@@ -2,6 +2,7 @@
 
 #include "BaseItem.h"
 #include "../Component/Player/InventoryComponent.h"
+#include "../TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 #include "../Struct/ItemData.h"
 
 // Sets default values
@@ -78,7 +79,8 @@ void ABaseItem::AddItem(AActor *inventoryOwner)
 						if (itemdata.Itemcount <= 0)
 						{
 							ItemAdded = true;
-							InventoryComp->loadinventory();
+							ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(inventoryOwner);
+							InventoryComp->reloadinventory(Ch->SelectInventory);
 							Destroy();
 							return;
 						}
@@ -92,8 +94,9 @@ void ABaseItem::AddItem(AActor *inventoryOwner)
 					InventoryComp->Inventory[i] = itemdata;
 					ItemAdded = true;
 					UE_LOG(LogTemp, Log, TEXT("남은 아이템 %s이(가) 인벤토리의 빈 슬롯에 추가되었습니다. 추가된 개수: %d"), *itemdata.ItemID.RowName.ToString(), itemdata.Itemcount);
-
-					InventoryComp->loadinventory();
+					ItemAdded = true;
+					ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(inventoryOwner);
+					InventoryComp->reloadinventory(Ch->SelectInventory);
 					Destroy();
 					return;
 				}
