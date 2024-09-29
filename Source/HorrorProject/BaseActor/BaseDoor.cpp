@@ -14,6 +14,8 @@ ABaseDoor::ABaseDoor()
     }
 	DoorMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DoorMesh"));
 	DoorMesh->SetupAttachment(RootComponent);
+	DoorMesh2 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DoorMesh2"));
+	DoorMesh2->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
@@ -21,7 +23,16 @@ void ABaseDoor::BeginPlay()
 {
 	Super::BeginPlay();
 	InitialRotation = DoorMesh->GetRelativeRotation();
-	OpenRotation = InitialRotation + FRotator(0.0f, OpenAngle, 0.0f);
+	LeftInitialLocation = DoorMesh->GetRelativeLocation();
+	if(DoorMesh2){
+		RightInitialLocation = DoorMesh2->GetRelativeLocation();
+	}
+	if(Movement){
+		LeftOpenLocation = LeftInitialLocation + FVector(MovementDistance, 0.0f, 0.0f);
+		RightOpenLocation = RightInitialLocation + FVector(-MovementDistance, 0.0f, 0.0f);
+	} else {
+		OpenRotation = InitialRotation + FRotator(0.0f, OpenAngle, 0.0f);
+	}
 }
 
 // Called every frame
@@ -29,11 +40,30 @@ void ABaseDoor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	if(isDoorOpen){
-		FRotator CurrentRotation = FMath::Lerp(DoorMesh->GetRelativeRotation(), OpenRotation, DeltaTime * DoorOpenSpeed);
-		DoorMesh->SetRelativeRotation(CurrentRotation);
+		if(Movement){
+			if(DoorMesh2){
+				FVector CurrentLocation = FMath::Lerp(DoorMesh2->GetRelativeLocation(), RightOpenLocation, DeltaTime * DoorOpenSpeed);
+        		DoorMesh2->SetRelativeLocation(CurrentLocation);
+			}
+			FVector CurrentLocation = FMath::Lerp(DoorMesh->GetRelativeLocation(), LeftOpenLocation, DeltaTime * DoorOpenSpeed);
+        	DoorMesh->SetRelativeLocation(CurrentLocation);
+		} else {
+			FRotator CurrentRotation = FMath::Lerp(DoorMesh->GetRelativeRotation(), OpenRotation, DeltaTime * DoorOpenSpeed);
+			DoorMesh->SetRelativeRotation(CurrentRotation);
+		}
+		
 	} else {
-		FRotator CurrentRotation = FMath::Lerp(DoorMesh->GetRelativeRotation(), InitialRotation, DeltaTime * DoorOpenSpeed);
-		DoorMesh->SetRelativeRotation(CurrentRotation);
+		if(Movement){
+			if(DoorMesh2){
+				FVector CurrentLocation = FMath::Lerp(DoorMesh2->GetRelativeLocation(), RightInitialLocation, DeltaTime * DoorOpenSpeed);
+        		DoorMesh2->SetRelativeLocation(CurrentLocation);
+			}
+			FVector CurrentLocation = FMath::Lerp(DoorMesh->GetRelativeLocation(), LeftInitialLocation, DeltaTime * DoorOpenSpeed);
+        	DoorMesh->SetRelativeLocation(CurrentLocation);
+		} else {
+			FRotator CurrentRotation = FMath::Lerp(DoorMesh->GetRelativeRotation(), InitialRotation, DeltaTime * DoorOpenSpeed);
+			DoorMesh->SetRelativeRotation(CurrentRotation);
+		}
 	}
 }
 

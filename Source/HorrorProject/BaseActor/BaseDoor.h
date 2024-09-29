@@ -29,6 +29,10 @@ private:
 	bool isDoorOpen = false;
 	FRotator InitialRotation;
 	FRotator OpenRotation;
+	FVector LeftInitialLocation;
+	FVector RightInitialLocation;
+	FVector LeftOpenLocation;
+	FVector RightOpenLocation;
 
 	UPROPERTY(EditAnyWhere, Category="Door")
 	float OpenAngle = 90.0f;
@@ -38,4 +42,13 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category="Door")
     class UStaticMeshComponent* DoorMesh;
+
+	UPROPERTY(VisibleAnywhere, Category="Door")
+    class UStaticMeshComponent* DoorMesh2;
+
+	UPROPERTY(EditAnyWhere, Category="Door")
+	bool Movement = false;
+
+	UPROPERTY(EditAnyWhere, Category="Door")
+	float MovementDistance = 10.0f;
 };
