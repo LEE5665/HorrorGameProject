@@ -16,6 +16,22 @@
 		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
 	},
 	{
+		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\BaseActor\\BaseItem.cpp",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\BaseActor\\BaseItem.h",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+	},
+	{
 		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\InteractComponent.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
@@ -25,6 +41,22 @@
 	},
 	{
 		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\InteractComponent.h",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\InventoryComponent.cpp",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\InventoryComponent.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
 			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"
@@ -72,6 +104,54 @@
 		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
 	},
 	{
+		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Struct\\Item.cpp",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Struct\\Item.h",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Struct\\ItemData.cpp",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Struct\\ItemData.h",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Struct\\SFX.cpp",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Struct\\SFX.h",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+	},
+	{
 		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\TP_ThirdPerson\\TP_ThirdPerson.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
@@ -105,6 +185,22 @@
 	},
 	{
 		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\TP_ThirdPerson\\TP_ThirdPersonGameMode.h",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Widget\\InventoryWidget.cpp",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Widget\\InventoryWidget.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
 			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"

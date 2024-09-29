@@ -41,6 +41,9 @@ class ATP_ThirdPersonCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* Interact;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* InventorySlot;
+
 public:
 	ATP_ThirdPersonCharacter();
 	
@@ -54,7 +57,8 @@ protected:
 	void Look(const FInputActionValue& Value);
 
 	void interact();
-			
+
+	void SelectInventorySlot(const FInputActionValue& Value);
 
 protected:
 	// APawn interface
@@ -66,5 +70,7 @@ protected:
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
 	class UInteractComponent* InteractComponent;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
+	class UInventoryComponent* InventoryComponent;
 };
 

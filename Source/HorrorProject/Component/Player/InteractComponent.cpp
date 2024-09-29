@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "../../BaseActor/BaseDoor.h"
+#include "../../BaseActor/BaseItem.h"
 #include "InteractComponent.h"
 #include "GameFramework/Actor.h"
 #include "DrawDebugHelpers.h"
@@ -82,6 +83,13 @@ void UInteractComponent::Interact()
 			{
 				DoorActor->Interact();
 				UE_LOG(LogTemp, Log, TEXT("Interacted with Door!"));
+			}
+		} else if(nHitActor->ActorHasTag(FName("Item")))
+		{
+			ABaseItem *ItemActor = Cast<ABaseItem>(nHitActor);
+			if(ItemActor)
+			{
+				ItemActor->AddItem(GetOwner());
 			}
 		}
 	}

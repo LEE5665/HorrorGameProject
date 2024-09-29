@@ -2,6 +2,7 @@
 
 #include "TP_ThirdPersonCharacter.h"
 #include "../Component/Player/InteractComponent.h"
+#include "../Component/Player/InventoryComponent.h"
 #include "Engine/LocalPlayer.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -43,6 +44,7 @@ ATP_ThirdPersonCharacter::ATP_ThirdPersonCharacter()
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 	InteractComponent = CreateDefaultSubobject<UInteractComponent>(TEXT("InteractComponent"));
+	InventoryComponent = CreateDefaultSubobject<UInventoryComponent>(TEXT("InventoryComponent"));
 }
 
 void ATP_ThirdPersonCharacter::BeginPlay()
@@ -79,6 +81,8 @@ void ATP_ThirdPersonCharacter::SetupPlayerInputComponent(UInputComponent* Player
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::Look);
 
 		EnhancedInputComponent->BindAction(Interact, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::interact);
+
+		EnhancedInputComponent->BindAction(InventorySlot, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::SelectInventorySlot);
 	}
 	else
 	{
@@ -89,6 +93,14 @@ void ATP_ThirdPersonCharacter::SetupPlayerInputComponent(UInputComponent* Player
 void ATP_ThirdPersonCharacter::interact()
 {
 	InteractComponent->Interact();
+}
+
+void ATP_ThirdPersonCharacter::SelectInventorySlot(const FInputActionValue &Value)
+{
+    float SlotNumber = Value.Get<float>();
+	int32 SlotIndex = FMath::RoundToInt(SlotNumber)-1;
+	UE_LOG(LogTemp, Log, TEXT("Inventory Slot %d selected"), SlotIndex);
+	InventoryComponent->reloadinventory(SlotIndex);
 }
 
 void ATP_ThirdPersonCharacter::Move(const FInputActionValue& Value)
