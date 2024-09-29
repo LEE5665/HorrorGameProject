@@ -29,5 +29,5 @@ public:
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> InteractionWidgetClass;
 	UUserWidget* InteractionWidget;
-	AActor* nHitActor;
+	FHitResult nHitActor;
 };

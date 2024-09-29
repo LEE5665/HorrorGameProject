@@ -43,54 +43,62 @@ void UInteractComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	FHitResult HitResult;
-	FVector Start = GetOwner()->GetActorLocation();
-	FVector End = Start + (GetOwner()->GetActorForwardVector() * 200.0f);
 
 	FCollisionQueryParams TraceParams;
 	TraceParams.AddIgnoredActor(GetOwner());
 
-	bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, TraceParams);
-	// DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 1.0f, 0, 2.0f);
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+	FVector CameraLocation;
+    FRotator CameraRotation;
+	PlayerController->GetPlayerViewPoint(CameraLocation, CameraRotation);
+	FVector Start = CameraLocation;
+    FVector End = Start + (CameraRotation.Vector() * 200.0f);
 
-	if (bHit && HitResult.GetActor())
-	{
-		if (HitResult.GetActor()->ActorHasTag(FName("Hit")))
-		{
-			nHitActor = HitResult.GetActor();
-			InteractionWidget->SetVisibility(ESlateVisibility::Visible);
-		}
-		else
-		{
-			nHitActor = nullptr;
-			InteractionWidget->SetVisibility(ESlateVisibility::Hidden);
-		}
-	}
-	else
-	{
-		nHitActor = nullptr;
-		InteractionWidget->SetVisibility(ESlateVisibility::Hidden);
-	}
+	bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, TraceParams);
+	//DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 1.0f, 0, 2.0f);
+
+	if (bHit && HitResult.GetActor() && HitResult.GetComponent())
+    {
+        if (HitResult.GetComponent()->ComponentHasTag(FName("Hit")))
+        {
+            nHitActor = HitResult;
+            InteractionWidget->SetVisibility(ESlateVisibility::Visible);
+        }
+        else
+        {
+            nHitActor = FHitResult();
+            InteractionWidget->SetVisibility(ESlateVisibility::Hidden);
+        }
+    }
+    else
+    {
+        nHitActor = FHitResult();
+        InteractionWidget->SetVisibility(ESlateVisibility::Hidden);
+    }
 }
 
 void UInteractComponent::Interact()
 {
-	if (nHitActor)
-	{
-		if (nHitActor->ActorHasTag(FName("Door")))
-		{
-			ABaseDoor *DoorActor = Cast<ABaseDoor>(nHitActor);
-			if (DoorActor)
-			{
-				DoorActor->Interact();
-				UE_LOG(LogTemp, Log, TEXT("Interacted with Door!"));
-			}
-		} else if(nHitActor->ActorHasTag(FName("Item")))
-		{
-			ABaseItem *ItemActor = Cast<ABaseItem>(nHitActor);
-			if(ItemActor)
-			{
-				ItemActor->AddItem(GetOwner());
-			}
-		}
-	}
+    if (nHitActor.GetActor())
+    {
+        AActor* HitActor = nHitActor.GetActor();
+        if (nHitActor.GetComponent()->ComponentHasTag(FName("Door")))
+        {
+            ABaseDoor* DoorActor = Cast<ABaseDoor>(HitActor);
+            if (DoorActor)
+            {
+                DoorActor->Interact();
+                UE_LOG(LogTemp, Log, TEXT("Interacted with Door!"));
+            }
+        }
+        else if (nHitActor.GetComponent()->ComponentHasTag(FName("Item")))
+        {
+            ABaseItem* ItemActor = Cast<ABaseItem>(HitActor);
+            if (ItemActor)
+            {
+                ItemActor->AddItem(GetOwner());
+                UE_LOG(LogTemp, Log, TEXT("Picked up Item!"));
+            }
+        }
+    }
 }

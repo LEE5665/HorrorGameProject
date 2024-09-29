@@ -2,6 +2,9 @@
 
 #include "../../Widget/InventoryWidget.h"
 #include "../../Struct/ItemData.h"
+#include "../../BaseActor/BaseItem.h"
+#include "Engine/World.h"
+#include "Kismet/GameplayStatics.h"
 #include "InventoryComponent.h"
 
 // Sets default values for this component's properties
@@ -58,7 +61,7 @@ void UInventoryComponent::loadinventory()
 	if (InventoryWidgetClass)
 	{
 		InventoryWidget = CreateWidget<UInventoryWidget>(GetWorld(), InventoryWidgetClass);
-		if(InventoryWidget)
+		if (InventoryWidget)
 		{
 			InventoryWidget->SetInventoryComponent(this);
 			InventoryWidget->AddToViewport();
@@ -68,7 +71,39 @@ void UInventoryComponent::loadinventory()
 
 void UInventoryComponent::reloadinventory(int32 Number)
 {
-	if(InventoryWidget){
+	if (InventoryWidget)
+	{
 		InventoryWidget->OnInventoryUpdated(Number);
+	}
+}
+
+void UInventoryComponent::DropItem(int32 Number)
+{
+	UDataTable *MyDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/06_Inventory/ItemData/DT_ItemData.DT_ItemData"));
+	if(Inventory[Number].Itemcount == 0)
+		return;
+	if (MyDataTable)
+	{
+		FName RowName = Inventory[Number].ItemID.RowName;
+		static const FString ContextString(TEXT("Name"));
+		FItemData *FoundItem = MyDataTable->FindRow<FItemData>(RowName, ContextString);
+		if (FoundItem)
+		{
+			UWorld *World = GetWorld();
+			if (World && FoundItem->Class)
+			{
+				FVector SpawnLocation = GetOwner()->GetActorLocation();
+				FRotator SpawnRotation = GetOwner()->GetActorRotation();
+
+				ABaseItem *SpawnedItem = World->SpawnActor<ABaseItem>(FoundItem->Class, SpawnLocation, SpawnRotation);
+				if (SpawnedItem)
+                {
+					SpawnedItem->itemdata.ItemID=Inventory[Number].ItemID;
+					SpawnedItem->itemdata.Itemcount=1;
+				}
+				Inventory[Number].Itemcount--;
+				reloadinventory(Number);
+			}
+		}
 	}
 }

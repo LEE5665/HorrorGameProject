@@ -28,4 +28,5 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemData")
 	FItem itemdata;
+	int32 SlotCount = 1;
 };

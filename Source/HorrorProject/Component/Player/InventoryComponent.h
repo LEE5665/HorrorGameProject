@@ -40,6 +40,8 @@ public:
 
 	void reloadinventory(int32 Number);
 
+	void DropItem(int32 Number);
+
 	// UFUNCTION(BlueprintCallable, Category = "Inventory")
 	// bool AddItem(const FItem& NewItem);
 };

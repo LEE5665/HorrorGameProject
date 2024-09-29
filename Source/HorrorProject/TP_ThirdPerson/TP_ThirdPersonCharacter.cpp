@@ -79,10 +79,9 @@ void ATP_ThirdPersonCharacter::SetupPlayerInputComponent(UInputComponent* Player
 
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::Look);
-
 		EnhancedInputComponent->BindAction(Interact, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::interact);
-
 		EnhancedInputComponent->BindAction(InventorySlot, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::SelectInventorySlot);
+		EnhancedInputComponent->BindAction(DropAction, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::Drop);
 	}
 	else
 	{
@@ -95,12 +94,16 @@ void ATP_ThirdPersonCharacter::interact()
 	InteractComponent->Interact();
 }
 
+void ATP_ThirdPersonCharacter::Drop(){
+	InventoryComponent->DropItem(SelectInventory);
+}
+
 void ATP_ThirdPersonCharacter::SelectInventorySlot(const FInputActionValue &Value)
 {
     float SlotNumber = Value.Get<float>();
-	int32 SlotIndex = FMath::RoundToInt(SlotNumber)-1;
-	UE_LOG(LogTemp, Log, TEXT("Inventory Slot %d selected"), SlotIndex);
-	InventoryComponent->reloadinventory(SlotIndex);
+	SelectInventory = FMath::RoundToInt(SlotNumber)-1;
+	UE_LOG(LogTemp, Log, TEXT("Inventory Slot %d selected"), SelectInventory);
+	InventoryComponent->reloadinventory(SelectInventory);
 }
 
 void ATP_ThirdPersonCharacter::Move(const FInputActionValue& Value)
