@@ -22,15 +22,23 @@ void UInventoryComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	Inventory.SetNum(InventorySlot);
-	if (InventoryWidgetClass)
-	{
-		InventoryWidget = CreateWidget<UInventoryWidget>(GetWorld(), InventoryWidgetClass);
-		if (InventoryWidget)
-		{
-			InventoryWidget->SetInventoryComponent(this);
-			InventoryWidget->AddToViewport();
-		}
-	}
+    AActor* Owner = GetOwner();
+    if (Owner)
+    {
+        APawn* Pawn = Cast<APawn>(Owner);
+        if (Pawn && Pawn->IsLocallyControlled())
+        {
+            if (InventoryWidgetClass && !IsValid(InventoryWidget))
+            {
+                InventoryWidget = CreateWidget<UInventoryWidget>(GetWorld(), InventoryWidgetClass);
+                if (InventoryWidget)
+                {
+                    InventoryWidget->SetInventoryComponent(this);
+                    InventoryWidget->AddToViewport();
+                }
+            }
+        }
+    }
 }
 
 // Called every frame
@@ -67,6 +75,7 @@ void UInventoryComponent::loadinventory()
 
 void UInventoryComponent::reloadinventory(int32 Number)
 {
+	InventoryWidget->SetInventoryComponent(this);
 	if (InventoryWidget)
 	{
 		InventoryWidget->OnInventoryUpdated(Number);

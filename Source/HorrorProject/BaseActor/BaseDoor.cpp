@@ -1,21 +1,26 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Components/StaticMeshComponent.h"
+#include "Net/UnrealNetwork.h"
 #include "BaseDoor.h"
 
 // Sets default values
 ABaseDoor::ABaseDoor()
 {
+	bReplicates = true;
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	if (!RootComponent)
     {
         RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("DefaultSceneRoot"));
     }
+
 	DoorMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DoorMesh"));
 	DoorMesh->SetupAttachment(RootComponent);
 	DoorMesh2 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DoorMesh2"));
 	DoorMesh2->SetupAttachment(RootComponent);
+
+
 }
 
 // Called when the game starts or when spawned
@@ -70,5 +75,14 @@ void ABaseDoor::Tick(float DeltaTime)
 
 void ABaseDoor::Interact()
 {
-	isDoorOpen = !isDoorOpen;
+    if (HasAuthority())
+    {
+        isDoorOpen = !isDoorOpen;
+    }
+}
+
+void ABaseDoor::GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const
+{
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+    DOREPLIFETIME(ABaseDoor, isDoorOpen);
 }

@@ -87,7 +87,7 @@ void UInteractComponent::Interact()
             ABaseDoor* DoorActor = Cast<ABaseDoor>(HitActor);
             if (DoorActor)
             {
-                DoorActor->Interact();
+                ServerInteractWithDoor(DoorActor);
                 UE_LOG(LogTemp, Log, TEXT("Interacted with Door!"));
             }
         }
@@ -101,4 +101,9 @@ void UInteractComponent::Interact()
             }
         }
     }
+}
+
+void UInteractComponent::ServerInteractWithDoor_Implementation(ABaseDoor *Door)
+{
+    Door->Interact();
 }

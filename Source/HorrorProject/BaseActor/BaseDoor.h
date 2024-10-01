@@ -25,14 +25,22 @@ public:
 
 	virtual void Interact();
 
-private:
+	UPROPERTY(replicated)
 	bool isDoorOpen = false;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void ServerFunction();
+
+private:
+
 	FRotator InitialRotation;
 	FRotator OpenRotation;
 	FVector LeftInitialLocation;
 	FVector RightInitialLocation;
 	FVector LeftOpenLocation;
 	FVector RightOpenLocation;
+
+	virtual void GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const override;
 
 	UPROPERTY(EditAnyWhere, Category="Door")
 	float OpenAngle = 90.0f;

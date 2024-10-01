@@ -26,6 +26,9 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	void Interact();
 
+	UFUNCTION(Server, Reliable)
+	void ServerInteractWithDoor(ABaseDoor *Door);
+
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> InteractionWidgetClass;
 	UUserWidget* InteractionWidget;
