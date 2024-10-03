@@ -29,6 +29,9 @@ public:
 	UFUNCTION(Server, Reliable)
 	void ServerInteractWithDoor(ABaseDoor *Door);
 
+	UFUNCTION(Server, Reliable)
+	void ServerInteractWithItem(ABaseItem* ItemActor, AActor *owner);
+
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> InteractionWidgetClass;
 	UUserWidget* InteractionWidget;

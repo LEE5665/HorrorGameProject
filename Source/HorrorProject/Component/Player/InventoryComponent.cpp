@@ -3,8 +3,10 @@
 #include "../../Widget/InventoryWidget.h"
 #include "../../Struct/ItemData.h"
 #include "../../BaseActor/BaseItem.h"
+#include "../../TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
+#include "Net/UnrealNetwork.h"
 #include "InventoryComponent.h"
 
 // Sets default values for this component's properties
@@ -21,24 +23,30 @@ UInventoryComponent::UInventoryComponent()
 void UInventoryComponent::BeginPlay()
 {
 	Super::BeginPlay();
+
 	Inventory.SetNum(InventorySlot);
-    AActor* Owner = GetOwner();
-    if (Owner)
-    {
-        APawn* Pawn = Cast<APawn>(Owner);
-        if (Pawn && Pawn->IsLocallyControlled())
-        {
-            if (InventoryWidgetClass && !IsValid(InventoryWidget))
-            {
-                InventoryWidget = CreateWidget<UInventoryWidget>(GetWorld(), InventoryWidgetClass);
-                if (InventoryWidget)
-                {
-                    InventoryWidget->SetInventoryComponent(this);
-                    InventoryWidget->AddToViewport();
-                }
-            }
-        }
-    }
+	AActor *Owner = GetOwner();
+	if (Owner)
+	{
+		APawn *Pawn = Cast<APawn>(Owner);
+		if (Pawn && Pawn->IsLocallyControlled())
+		{
+			APlayerController *PlayerController = Cast<APlayerController>(Pawn->GetController());
+			if (PlayerController)
+			{
+				if (InventoryWidgetClass)
+				{
+					InventoryWidget = CreateWidget<UInventoryWidget>(PlayerController, InventoryWidgetClass);
+					if (InventoryWidget)
+					{
+						InventoryWidget->SetInventoryComponent(this);
+						InventoryWidget->AddToViewport();
+					}
+				}
+			}
+		}
+
+	}
 }
 
 // Called every frame
@@ -75,17 +83,20 @@ void UInventoryComponent::loadinventory()
 
 void UInventoryComponent::reloadinventory(int32 Number)
 {
-	InventoryWidget->SetInventoryComponent(this);
 	if (InventoryWidget)
 	{
 		InventoryWidget->OnInventoryUpdated(Number);
 	}
+	else
+	{
+		UE_LOG(LogTemp, Log, TEXT("XXX"));
+	}
 }
 
-void UInventoryComponent::DropItem(int32 Number)
+void UInventoryComponent::DropItem_Implementation(int32 Number)
 {
 	UDataTable *MyDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/06_Inventory/ItemData/DT_ItemData.DT_ItemData"));
-	if(Inventory[Number].Itemcount == 0)
+	if (Inventory[Number].Itemcount == 0)
 		return;
 	if (MyDataTable)
 	{
@@ -102,16 +113,29 @@ void UInventoryComponent::DropItem(int32 Number)
 
 				ABaseItem *SpawnedItem = World->SpawnActor<ABaseItem>(FoundItem->Class, SpawnLocation, SpawnRotation);
 				if (SpawnedItem)
-                {
-					SpawnedItem->itemdata.ItemID=Inventory[Number].ItemID;
-					SpawnedItem->itemdata.Itemcount=1;
+				{
+					SpawnedItem->itemdata.ItemID = Inventory[Number].ItemID;
+					SpawnedItem->itemdata.Itemcount = 1;
 				}
 				Inventory[Number].Itemcount--;
-				if(Inventory[Number].Itemcount == 0){
+				if (Inventory[Number].Itemcount == 0)
+				{
 					Inventory[Number].ItemID.RowName = FName("None");
 				}
 				reloadinventory(Number);
 			}
 		}
 	}
+}
+
+void UInventoryComponent::OnRep_Inventory()
+{
+	ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
+	reloadinventory(Ch->SelectInventory);
+}
+
+void UInventoryComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const
+{
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+    DOREPLIFETIME(UInventoryComponent, Inventory);
 }

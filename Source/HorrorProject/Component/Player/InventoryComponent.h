@@ -28,10 +28,14 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> InventoryWidgetClass;
+
+	UPROPERTY(BlueprintReadWrite);
 	class UInventoryWidget* InventoryWidget;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, ReplicatedUsing=OnRep_Inventory, Category = "Inventory")
 	TArray<FItem> Inventory;
+
+	virtual void GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
 	int32 InventorySlot = 6;
@@ -40,7 +44,11 @@ public:
 
 	void reloadinventory(int32 Number);
 
+	UFUNCTION(Server, Reliable)
 	void DropItem(int32 Number);
+
+	UFUNCTION()
+	void OnRep_Inventory();
 
 	// UFUNCTION(BlueprintCallable, Category = "Inventory")
 	// bool AddItem(const FItem& NewItem);
