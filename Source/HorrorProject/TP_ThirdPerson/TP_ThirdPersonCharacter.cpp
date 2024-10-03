@@ -82,6 +82,7 @@ void ATP_ThirdPersonCharacter::SetupPlayerInputComponent(UInputComponent* Player
 		EnhancedInputComponent->BindAction(Interact, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::interact);
 		EnhancedInputComponent->BindAction(InventorySlot, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::SelectInventorySlot);
 		EnhancedInputComponent->BindAction(DropAction, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::Drop);
+		//EnhancedInputComponent->BindAction(DropAction, ETriggerEvent::Ongoing, this, &ATP_ThirdPersonCharacter::Drop); 테스트 해보려고 했는데 인벤 오류나서 못함;;
 	}
 	else
 	{
