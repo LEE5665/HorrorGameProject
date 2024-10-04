@@ -40,11 +40,24 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Properties")
     int32 SlotQuantity;
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Properties")
+    FVector AttachLocation;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Properties")
+    FRotator AttachRotation;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Properties")
+    FVector AttachScale;
+    
+
     FItemData()
         : Name(FText::FromString("Default Name"))
         , Description(FName("Default Description"))
         , Image(nullptr)
         , Class(nullptr)
         , SlotQuantity(1)
+        , AttachLocation(FVector::ZeroVector)
+        , AttachRotation(FRotator::ZeroRotator)
+        , AttachScale(FVector(1.0f, 1.0f, 1.0f))
     {}
 };

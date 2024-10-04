@@ -45,7 +45,6 @@ void UInventoryComponent::BeginPlay()
 				}
 			}
 		}
-
 	}
 }
 
@@ -86,7 +85,76 @@ void UInventoryComponent::reloadinventory(int32 Number)
 	if (InventoryWidget)
 	{
 		InventoryWidget->OnInventoryUpdated(Number);
+		ServerAttachItem(Number);
 	}
+}
+
+void UInventoryComponent::ServerAttachItem_Implementation(int32 Number)
+{
+	ChAttachItem(Number);
+}
+
+void UInventoryComponent::ChAttachItem(int32 Number)
+{
+	if (AttachItem)
+	{
+		AttachItem->Destroy();
+	}
+	UDataTable *MyDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/06_Inventory/ItemData/DT_ItemData.DT_ItemData"));
+	if (MyDataTable)
+	{
+		if (Inventory[Number].Itemcount != 0)
+		{
+			FName RowName = Inventory[Number].ItemID.RowName;
+			static const FString ContextString(TEXT("Name"));
+			FItemData *FoundItem = MyDataTable->FindRow<FItemData>(RowName, ContextString);
+			if (FoundItem)
+			{
+				UWorld *World = GetWorld();
+				if (World && FoundItem->Class)
+				{
+					AttachItem = World->SpawnActor<ABaseItem>(FoundItem->Class);
+					if (AttachItem)
+					{
+						UStaticMeshComponent *StaticMeshComp = Cast<UStaticMeshComponent>(AttachItem->GetComponentByClass(UStaticMeshComponent::StaticClass()));
+						if (StaticMeshComp)
+						{
+							StaticMeshComp->SetSimulatePhysics(false);
+						}
+						AActor *Owner = GetOwner();
+						if (Owner)
+						{
+							USkeletalMeshComponent *Mesh = Cast<USkeletalMeshComponent>(Owner->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
+							if (Mesh)
+							{
+								AttachItem->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+								AttachItem->AttachToComponent(Mesh, FAttachmentTransformRules::SnapToTargetIncludingScale, FName("Ep"));
+								AttachItem->SetActorRelativeLocation(FoundItem->AttachLocation);
+								AttachLocation = FoundItem->AttachLocation;
+								AttachItem->SetActorRelativeRotation(FoundItem->AttachRotation);
+								AttachRotation = FoundItem->AttachRotation;
+								AttachItem->SetActorRelativeScale3D(FoundItem->AttachScale);
+								AttachScale = FoundItem->AttachScale;
+								UE_LOG(LogTemp, Log, TEXT("아이템 %s이(가) 캐릭터에 부착되었습니다."), *FoundItem->Name.ToString());
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+void UInventoryComponent::OnRep_Inventory()
+{
+	ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
+	reloadinventory(Ch->SelectInventory);
+}
+
+void UInventoryComponent::OnRep_HandItem()
+{
+	ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
+	ChAttachItem(Ch->SelectInventory);
 }
 
 void UInventoryComponent::DropItem_Implementation(int32 Number)
@@ -124,14 +192,9 @@ void UInventoryComponent::DropItem_Implementation(int32 Number)
 	}
 }
 
-void UInventoryComponent::OnRep_Inventory()
-{
-	ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
-	reloadinventory(Ch->SelectInventory);
-}
-
 void UInventoryComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const
 {
-    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-    DOREPLIFETIME(UInventoryComponent, Inventory);
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(UInventoryComponent, Inventory);
+	DOREPLIFETIME(UInventoryComponent, AttachItem);
 }

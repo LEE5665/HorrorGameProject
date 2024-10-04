@@ -3,6 +3,7 @@
 #include "BaseItem.h"
 #include "../Component/Player/InventoryComponent.h"
 #include "../TP_ThirdPerson/TP_ThirdPersonCharacter.h"
+#include "Components/StaticMeshComponent.h"
 #include "../Struct/ItemData.h"
 
 // Sets default values
@@ -16,31 +17,17 @@ ABaseItem::ABaseItem()
 void ABaseItem::BeginPlay()
 {
 	Super::BeginPlay();
-
-	// 데이터 테이블 로드
-	// UDataTable* MyDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/06_Inventory/ItemData/DT_ItemData.DT_ItemData"));
-
-	// if (MyDataTable)
-	// {
-	// 	UE_LOG(LogTemp, Log, TEXT("데이터 테이블이 로드되었습니다."));
-
-	// 	// 이름으로 행을 검색
-	// 	FName RowName = itemdata.ItemID;
-	// 	static const FString ContextString(TEXT("Name"));
-	// 	FItemData* FoundItem = MyDataTable->FindRow<FItemData>(RowName, ContextString);
-
-	// 	if (FoundItem)
-	// 	{
-	// 		// 데이터 가져오기 성공
-	// 		UE_LOG(LogTemp, Log, TEXT("아이템 이름: %s, 수량: %d"), *FoundItem->Name.ToString(), FoundItem->SlotQuantity);
-	// 	}
-	// }
 }
 
 // Called every frame
 void ABaseItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
+
+void ABaseItem::Use()
+{
+	UE_LOG(LogTemp,Log,TEXT("베이스아이템 Use 실행"));
 }
 
 void ABaseItem::AddItem(AActor *inventoryOwner)

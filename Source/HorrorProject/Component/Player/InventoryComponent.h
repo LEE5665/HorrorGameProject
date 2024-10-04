@@ -22,6 +22,11 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+private:
+    FVector AttachLocation;
+    FRotator AttachRotation;
+    FVector AttachScale;
+
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
@@ -34,6 +39,11 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, ReplicatedUsing=OnRep_Inventory, Category = "Inventory")
 	TArray<FItem> Inventory;
+
+	UFUNCTION(Server, Reliable)
+	void ServerAttachItem(int32 Number);
+
+	void ChAttachItem(int32 Number);
 
 	virtual void GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const override;
 
@@ -49,6 +59,14 @@ public:
 
 	UFUNCTION()
 	void OnRep_Inventory();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, ReplicatedUsing=OnRep_HandItem, Category = "Inventory")
+	class ABaseItem *AttachItem;
+
+	UFUNCTION()
+	void OnRep_HandItem();
+
+	
 
 	// UFUNCTION(BlueprintCallable, Category = "Inventory")
 	// bool AddItem(const FItem& NewItem);
