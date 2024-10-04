@@ -7,6 +7,8 @@
             "cppStandard": "c++20",
             "intelliSenseMode": "msvc-x64",
             "compileCommands": "D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject.json"
+            //"compileCommands": "F:\\Unreal Projects\\HorrorProject\\.vscode\\compileCommands_HorrorProject.json"
+            //cpp 자동완성 사용하려면 .vscode에 있는 파일들 경로 다 바꿔야 하는데 귀찮아서 포기함 ㅅㄱ
         },
         {
             "name": "Win32",
@@ -15,6 +17,7 @@
             "cppStandard": "c++20",
             "intelliSenseMode": "msvc-x64",
             "compileCommands": "D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default.json"
+            //"compileCommands": "F:\\Unreal Projects\\HorrorProject\\.vscode\\compileCommands_Default.json"
         }
     ],
     "version": 4
