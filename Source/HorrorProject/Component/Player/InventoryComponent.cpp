@@ -48,6 +48,30 @@ void UInventoryComponent::BeginPlay()
 	}
 }
 
+void UInventoryComponent::ServerUse_Implementation()
+{
+	if (GetOwner()->HasAuthority())
+	{
+		if(AttachItem)
+		{
+			AttachItem->Use();
+			MultiUse();
+		}
+	}
+}
+
+void UInventoryComponent::MultiUse_Implementation()
+{
+	if (!GetOwner()->HasAuthority())
+	{
+		if(AttachItem){
+			UE_LOG(LogTemp,Warning,TEXT("로그"));
+			AttachItem->Use();
+		}
+	}
+
+}
+
 // Called every frame
 void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
 {
@@ -96,14 +120,15 @@ void UInventoryComponent::ServerAttachItem_Implementation(int32 Number)
 
 void UInventoryComponent::ChAttachItem(int32 Number)
 {
-	if (AttachItem)
+	if (GetOwnerRole() == ROLE_Authority)
 	{
-		AttachItem->Destroy();
-	}
-	UDataTable *MyDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/06_Inventory/ItemData/DT_ItemData.DT_ItemData"));
-	if (MyDataTable)
-	{
-		if (Inventory[Number].Itemcount != 0)
+		if (AttachItem)
+		{
+			AttachItem->Destroy();
+		}
+
+		UDataTable *MyDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/06_Inventory/ItemData/DT_ItemData.DT_ItemData"));
+		if (MyDataTable && Inventory[Number].Itemcount != 0)
 		{
 			FName RowName = Inventory[Number].ItemID.RowName;
 			static const FString ContextString(TEXT("Name"));
@@ -121,23 +146,23 @@ void UInventoryComponent::ChAttachItem(int32 Number)
 						{
 							StaticMeshComp->SetSimulatePhysics(false);
 						}
+						AttachLocation = FoundItem->AttachLocation;
+						AttachRotation = FoundItem->AttachRotation;
+						AttachScale = FoundItem->AttachScale;
 						AActor *Owner = GetOwner();
-						if (Owner)
+						if (Owner && GetOwnerRole() == ROLE_Authority)
 						{
 							USkeletalMeshComponent *Mesh = Cast<USkeletalMeshComponent>(Owner->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
 							if (Mesh)
 							{
-								AttachItem->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 								AttachItem->AttachToComponent(Mesh, FAttachmentTransformRules::SnapToTargetIncludingScale, FName("Ep"));
-								AttachItem->SetActorRelativeLocation(FoundItem->AttachLocation);
-								AttachLocation = FoundItem->AttachLocation;
-								AttachItem->SetActorRelativeRotation(FoundItem->AttachRotation);
-								AttachRotation = FoundItem->AttachRotation;
-								AttachItem->SetActorRelativeScale3D(FoundItem->AttachScale);
-								AttachScale = FoundItem->AttachScale;
-								UE_LOG(LogTemp, Log, TEXT("아이템 %s이(가) 캐릭터에 부착되었습니다."), *FoundItem->Name.ToString());
+								AttachItem->SetActorRelativeLocation(AttachLocation);
+								AttachItem->SetActorRelativeRotation(AttachRotation);
+								AttachItem->SetActorRelativeScale3D(AttachScale);
 							}
 						}
+
+						UE_LOG(LogTemp, Log, TEXT("서버에서 아이템 %s 생성 완료"), *FoundItem->Name.ToString());
 					}
 				}
 			}
@@ -153,8 +178,22 @@ void UInventoryComponent::OnRep_Inventory()
 
 void UInventoryComponent::OnRep_HandItem()
 {
-	ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
-	ChAttachItem(Ch->SelectInventory);
+	if (AttachItem)
+	{
+		AActor *Owner = GetOwner();
+		if (Owner)
+		{
+			USkeletalMeshComponent *Mesh = Cast<USkeletalMeshComponent>(Owner->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
+			if (Mesh)
+			{
+				AttachItem->AttachToComponent(Mesh, FAttachmentTransformRules::SnapToTargetIncludingScale, FName("Ep"));
+				AttachItem->SetActorRelativeLocation(AttachLocation);
+				AttachItem->SetActorRelativeRotation(AttachRotation);
+				AttachItem->SetActorRelativeScale3D(AttachScale);
+				UE_LOG(LogTemp, Log, TEXT("클라이언트에서 아이템 부착 완료"));
+			}
+		}
+	}
 }
 
 void UInventoryComponent::DropItem_Implementation(int32 Number)
@@ -197,4 +236,7 @@ void UInventoryComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(UInventoryComponent, Inventory);
 	DOREPLIFETIME(UInventoryComponent, AttachItem);
+	DOREPLIFETIME(UInventoryComponent, AttachLocation);
+	DOREPLIFETIME(UInventoryComponent, AttachRotation);
+	DOREPLIFETIME(UInventoryComponent, AttachScale);
 }

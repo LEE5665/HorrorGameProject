@@ -23,8 +23,11 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
+	UPROPERTY(Replicated)
     FVector AttachLocation;
+	UPROPERTY(Replicated)
     FRotator AttachRotation;
+	UPROPERTY(Replicated)
     FVector AttachScale;
 
 public:	
@@ -65,6 +68,12 @@ public:
 
 	UFUNCTION()
 	void OnRep_HandItem();
+
+	UFUNCTION(Server, Reliable)
+	void ServerUse();
+
+	UFUNCTION(NetMulticast, Reliable)
+	void MultiUse();
 
 	
 

@@ -29,7 +29,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HandStaticMesh")
 	FRotator AttachRotation;
 
-	virtual void Use();
+	UFUNCTION(BlueprintNativeEvent)
+	void Use();
 
 	void AddItem(AActor* inventoryOwner);
 

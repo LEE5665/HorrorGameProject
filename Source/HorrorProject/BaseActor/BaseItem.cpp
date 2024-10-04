@@ -25,7 +25,7 @@ void ABaseItem::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void ABaseItem::Use()
+void ABaseItem::Use_Implementation()
 {
 	UE_LOG(LogTemp,Log,TEXT("베이스아이템 Use 실행"));
 }
