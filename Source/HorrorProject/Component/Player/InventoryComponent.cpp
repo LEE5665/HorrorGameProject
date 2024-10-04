@@ -87,10 +87,6 @@ void UInventoryComponent::reloadinventory(int32 Number)
 	{
 		InventoryWidget->OnInventoryUpdated(Number);
 	}
-	else
-	{
-		UE_LOG(LogTemp, Log, TEXT("XXX"));
-	}
 }
 
 void UInventoryComponent::DropItem_Implementation(int32 Number)
