@@ -7,6 +7,7 @@
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
 #include "Net/UnrealNetwork.h"
+#include "../../Interface/Battery.h"
 #include "InventoryComponent.h"
 
 // Sets default values for this component's properties
@@ -62,14 +63,13 @@ void UInventoryComponent::ServerUse_Implementation()
 
 void UInventoryComponent::MultiUse_Implementation()
 {
-	if (!GetOwner()->HasAuthority())
-	{
-		if(AttachItem){
-			UE_LOG(LogTemp,Warning,TEXT("로그"));
-			AttachItem->Use();
-		}
-	}
-
+	// if (!GetOwner()->HasAuthority())
+	// {
+	// 	if(AttachItem){
+	// 		UE_LOG(LogTemp,Warning,TEXT("로그"));
+	// 		AttachItem->Use();
+	// 	}
+	// }
 }
 
 // Called every frame
@@ -146,9 +146,6 @@ void UInventoryComponent::ChAttachItem(int32 Number)
 						{
 							StaticMeshComp->SetSimulatePhysics(false);
 						}
-						AttachLocation = FoundItem->AttachLocation;
-						AttachRotation = FoundItem->AttachRotation;
-						AttachScale = FoundItem->AttachScale;
 						AActor *Owner = GetOwner();
 						if (Owner && GetOwnerRole() == ROLE_Authority)
 						{
@@ -156,9 +153,9 @@ void UInventoryComponent::ChAttachItem(int32 Number)
 							if (Mesh)
 							{
 								AttachItem->AttachToComponent(Mesh, FAttachmentTransformRules::SnapToTargetIncludingScale, FName("Ep"));
-								AttachItem->SetActorRelativeLocation(AttachLocation);
-								AttachItem->SetActorRelativeRotation(AttachRotation);
-								AttachItem->SetActorRelativeScale3D(AttachScale);
+								AttachItem->SetActorRelativeLocation(FoundItem->AttachLocation);
+								AttachItem->SetActorRelativeRotation(FoundItem->AttachRotation);
+								AttachItem->SetActorRelativeScale3D(FoundItem->AttachScale);
 							}
 						}
 
@@ -180,17 +177,29 @@ void UInventoryComponent::OnRep_HandItem()
 {
 	if (AttachItem)
 	{
-		AActor *Owner = GetOwner();
-		if (Owner)
+		ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
+		UDataTable *MyDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/06_Inventory/ItemData/DT_ItemData.DT_ItemData"));
+		if (MyDataTable && Inventory[Ch->SelectInventory].Itemcount != 0)
 		{
-			USkeletalMeshComponent *Mesh = Cast<USkeletalMeshComponent>(Owner->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
-			if (Mesh)
+			FName RowName = Inventory[Ch->SelectInventory].ItemID.RowName;
+			static const FString ContextString(TEXT("Name"));
+			FItemData *FoundItem = MyDataTable->FindRow<FItemData>(RowName, ContextString);
+			if (FoundItem)
 			{
-				AttachItem->AttachToComponent(Mesh, FAttachmentTransformRules::SnapToTargetIncludingScale, FName("Ep"));
-				AttachItem->SetActorRelativeLocation(AttachLocation);
-				AttachItem->SetActorRelativeRotation(AttachRotation);
-				AttachItem->SetActorRelativeScale3D(AttachScale);
-				UE_LOG(LogTemp, Log, TEXT("클라이언트에서 아이템 부착 완료"));
+
+				AActor *Owner = GetOwner();
+				if (Owner)
+				{
+					USkeletalMeshComponent *Mesh = Cast<USkeletalMeshComponent>(Owner->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
+					if (Mesh)
+					{
+						AttachItem->AttachToComponent(Mesh, FAttachmentTransformRules::SnapToTargetIncludingScale, FName("Ep"));
+						AttachItem->SetActorRelativeLocation(FoundItem->AttachLocation);
+						AttachItem->SetActorRelativeRotation(FoundItem->AttachRotation);
+						AttachItem->SetActorRelativeScale3D(FoundItem->AttachScale);
+						UE_LOG(LogTemp, Log, TEXT("클라이언트에서 아이템 부착 완료"));
+					}
+				}
 			}
 		}
 	}
@@ -198,6 +207,7 @@ void UInventoryComponent::OnRep_HandItem()
 
 void UInventoryComponent::DropItem_Implementation(int32 Number)
 {
+
 	UDataTable *MyDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/06_Inventory/ItemData/DT_ItemData.DT_ItemData"));
 	if (Inventory[Number].Itemcount == 0)
 		return;
@@ -219,6 +229,13 @@ void UInventoryComponent::DropItem_Implementation(int32 Number)
 				{
 					SpawnedItem->itemdata.ItemID = Inventory[Number].ItemID;
 					SpawnedItem->itemdata.Itemcount = 1;
+					if(SpawnedItem->GetClass()->ImplementsInterface(UBattery::StaticClass()))
+					{
+						bool Isuse = IBattery::Execute_GetSwitch(AttachItem);
+						IBattery::Execute_SetBatteryLevel(SpawnedItem, IBattery::Execute_GetBatteryLevel(AttachItem));
+						UE_LOG(LogTemp,Warning,TEXT("%d"), Isuse);
+						IBattery::Execute_SetSwitch(SpawnedItem, Isuse);
+					}
 				}
 				Inventory[Number].Itemcount--;
 				if (Inventory[Number].Itemcount == 0)
@@ -236,7 +253,4 @@ void UInventoryComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(UInventoryComponent, Inventory);
 	DOREPLIFETIME(UInventoryComponent, AttachItem);
-	DOREPLIFETIME(UInventoryComponent, AttachLocation);
-	DOREPLIFETIME(UInventoryComponent, AttachRotation);
-	DOREPLIFETIME(UInventoryComponent, AttachScale);
 }

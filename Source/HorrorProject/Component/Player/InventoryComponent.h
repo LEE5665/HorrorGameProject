@@ -8,6 +8,7 @@
 #include "Blueprint/UserWidget.h"
 #include "InventoryComponent.generated.h"
 
+class ABaseItem;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class HORRORPROJECT_API UInventoryComponent : public UActorComponent
@@ -23,12 +24,12 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	UPROPERTY(Replicated)
-    FVector AttachLocation;
-	UPROPERTY(Replicated)
-    FRotator AttachRotation;
-	UPROPERTY(Replicated)
-    FVector AttachScale;
+	// UPROPERTY(Replicated)
+    // FVector AttachLocation;
+	// UPROPERTY(Replicated)
+    // FRotator AttachRotation;
+	// UPROPERTY(Replicated)
+    // FVector AttachScale;
 
 public:	
 	// Called every frame
@@ -64,7 +65,7 @@ public:
 	void OnRep_Inventory();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, ReplicatedUsing=OnRep_HandItem, Category = "Inventory")
-	class ABaseItem *AttachItem;
+	ABaseItem *AttachItem;
 
 	UFUNCTION()
 	void OnRep_HandItem();
