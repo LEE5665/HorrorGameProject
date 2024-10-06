@@ -64,6 +64,22 @@
 		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
 	},
 	{
+		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\StatusComponent.cpp",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\StatusComponent.h",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+	},
+	{
 		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\HorrorProject.Build.cs",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
@@ -201,6 +217,22 @@
 	},
 	{
 		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Widget\\InventoryWidget.h",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Widget\\StatusWidget.cpp",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Widget\\StatusWidget.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
 			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_Default\\HorrorProject.1.rsp"

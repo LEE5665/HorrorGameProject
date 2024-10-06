@@ -9,6 +9,7 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "../Component/Player/StatusComponent.h"
 #include "GameFramework/Controller.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
@@ -46,6 +47,7 @@ ATP_ThirdPersonCharacter::ATP_ThirdPersonCharacter()
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 	InteractComponent = CreateDefaultSubobject<UInteractComponent>(TEXT("InteractComponent"));
 	InventoryComponent = CreateDefaultSubobject<UInventoryComponent>(TEXT("InventoryComponent"));
+	StatusComponent = CreateDefaultSubobject<UStatusComponent>(TEXT("StatusComponent"));
 }
 
 void ATP_ThirdPersonCharacter::BeginPlay()
@@ -84,6 +86,8 @@ void ATP_ThirdPersonCharacter::SetupPlayerInputComponent(UInputComponent* Player
 		EnhancedInputComponent->BindAction(InventorySlot, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::SelectInventorySlot);
 		EnhancedInputComponent->BindAction(DropAction, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::Drop);
 		EnhancedInputComponent->BindAction(LeftClickAction, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::LeftClick);
+		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Started, this, &ATP_ThirdPersonCharacter::RunHold);
+		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Completed, this, &ATP_ThirdPersonCharacter::RunCompleted);
 	}
 	else
 	{
@@ -97,7 +101,7 @@ void ATP_ThirdPersonCharacter::interact()
 }
 
 void ATP_ThirdPersonCharacter::Drop(){
-	InventoryComponent->DropItem(SelectInventory);
+	InventoryComponent->DropItem(SelectInventory, true);
 }
 
 void ATP_ThirdPersonCharacter::LeftClick()
@@ -105,12 +109,24 @@ void ATP_ThirdPersonCharacter::LeftClick()
 	InventoryComponent->ServerUse();
 }
 
+void ATP_ThirdPersonCharacter::RunHold()
+{
+	StatusComponent->RunStatus(true);
+}
+void ATP_ThirdPersonCharacter::RunCompleted()
+{
+	StatusComponent->RunStatus(false);
+}
+
 void ATP_ThirdPersonCharacter::SelectInventorySlot(const FInputActionValue &Value)
 {
     float SlotNumber = Value.Get<float>();
+	if(FMath::RoundToInt(SlotNumber)-1 == SelectInventory)
+		return;
+	InventoryComponent->PastInventorySlot=SelectInventory;
 	SelectInventory = FMath::RoundToInt(SlotNumber)-1;
 	UE_LOG(LogTemp, Log, TEXT("Inventory Slot %d selected"), SelectInventory);
-	InventoryComponent->reloadinventory(SelectInventory);
+	InventoryComponent->reloadinventory(true);
 }
 
 void ATP_ThirdPersonCharacter::Move(const FInputActionValue& Value)

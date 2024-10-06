@@ -25,6 +25,8 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Battery")
 	int32 GetBatteryLevel();
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Battery")
+	int32 GetMaxBatteryLevel();
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Battery")
 	void SetBatteryLevel(int32 NewBatteryLevel);
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Battery")
 	bool GetSwitch();

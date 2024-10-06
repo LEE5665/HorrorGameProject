@@ -4,6 +4,8 @@
 #include "../Component/Player/InventoryComponent.h"
 #include "../TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 #include "Components/StaticMeshComponent.h"
+#include "../Interface/Battery.h"
+#include "GameFramework/Actor.h"
 #include "../Struct/ItemData.h"
 
 // Sets default values
@@ -66,8 +68,22 @@ void ABaseItem::AddItem(AActor *inventoryOwner)
 						if (itemdata.Itemcount <= 0)
 						{
 							ItemAdded = true;
+							AActor *ItemOwner = GetOwner();
+							if (Owner)
+							{
+								ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(ItemOwner);
+								Ch->InventoryComponent->DropItem(Ch->SelectInventory, false);
+								InventoryComp->ServerAttachItem(Ch->SelectInventory);
+								UE_LOG(LogTemp, Warning, TEXT("남의 아이템 뺏음!"));
+							}
 							ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(inventoryOwner);
-							InventoryComp->reloadinventory(Ch->SelectInventory);
+							if(Ch->SelectInventory == i)
+							{
+								InventoryComp->reloadinventory(true);
+							}
+							else {
+								InventoryComp->reloadinventory(false);
+							}
 							Destroy();
 							return;
 						}
@@ -81,9 +97,28 @@ void ABaseItem::AddItem(AActor *inventoryOwner)
 					InventoryComp->Inventory[i] = itemdata;
 					ItemAdded = true;
 					UE_LOG(LogTemp, Log, TEXT("남은 아이템 %s이(가) 인벤토리의 빈 슬롯에 추가되었습니다. 추가된 개수: %d"), *itemdata.ItemID.RowName.ToString(), itemdata.Itemcount);
-					ItemAdded = true;
+					if (this->GetClass()->ImplementsInterface(UBattery::StaticClass()))
+					{
+						InventoryComp->Inventory[i].Maxbattery = IBattery::Execute_GetMaxBatteryLevel(this);
+						InventoryComp->Inventory[i].Currentbattery = IBattery::Execute_GetBatteryLevel(this);
+						AActor *ItemOwner = GetOwner();
+						if(Owner)
+						{
+							ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(ItemOwner);
+							Ch->InventoryComponent->DropItem(Ch->SelectInventory, false);
+							InventoryComp->ServerAttachItem(Ch->SelectInventory);
+							UE_LOG(LogTemp,Warning,TEXT("남의 아이템 뺏음!"));
+						}
+					}
 					ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(inventoryOwner);
-					InventoryComp->reloadinventory(Ch->SelectInventory);
+					if (Ch->SelectInventory == i)
+					{
+						InventoryComp->reloadinventory(true);
+					}
+					else
+					{
+						InventoryComp->reloadinventory(false);
+					}
 					Destroy();
 					return;
 				}

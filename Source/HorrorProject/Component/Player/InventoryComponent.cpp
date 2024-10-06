@@ -56,20 +56,8 @@ void UInventoryComponent::ServerUse_Implementation()
 		if(AttachItem)
 		{
 			AttachItem->Use();
-			MultiUse();
 		}
 	}
-}
-
-void UInventoryComponent::MultiUse_Implementation()
-{
-	// if (!GetOwner()->HasAuthority())
-	// {
-	// 	if(AttachItem){
-	// 		UE_LOG(LogTemp,Warning,TEXT("로그"));
-	// 		AttachItem->Use();
-	// 	}
-	// }
 }
 
 // Called every frame
@@ -80,36 +68,15 @@ void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	// ...
 }
 
-void UInventoryComponent::loadinventory()
-{
-	UDataTable *MyDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/06_Inventory/ItemData/DT_ItemData.DT_ItemData"));
-	for (int i = 0; i < Inventory.Num(); i++)
-	{
-
-		if (MyDataTable)
-		{
-			if (Inventory[i].Itemcount != 0)
-			{
-
-				UE_LOG(LogTemp, Log, TEXT("데이터 테이블이 로드되었습니다."));
-				FName RowName = Inventory[i].ItemID.RowName;
-				static const FString ContextString(TEXT("Name"));
-				FItemData *FoundItem = MyDataTable->FindRow<FItemData>(RowName, ContextString);
-				if (FoundItem)
-				{
-					UE_LOG(LogTemp, Log, TEXT("아이템 이름: %s, 수량: %d"), *FoundItem->Name.ToString(), Inventory[i].Itemcount);
-				}
-			}
-		}
-	}
-}
-
-void UInventoryComponent::reloadinventory(int32 Number)
+void UInventoryComponent::reloadinventory(bool AttachLoad)
 {
 	if (InventoryWidget)
 	{
-		InventoryWidget->OnInventoryUpdated(Number);
-		ServerAttachItem(Number);
+		ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
+		InventoryWidget->OnInventoryUpdated(Ch->SelectInventory);
+		if(AttachLoad == true){
+			ServerAttachItem(Ch->SelectInventory);
+		}
 	}
 }
 
@@ -139,6 +106,7 @@ void UInventoryComponent::ChAttachItem(int32 Number)
 				if (World && FoundItem->Class)
 				{
 					AttachItem = World->SpawnActor<ABaseItem>(FoundItem->Class);
+					AttachItem->SetOwner(GetOwner());
 					if (AttachItem)
 					{
 						UStaticMeshComponent *StaticMeshComp = Cast<UStaticMeshComponent>(AttachItem->GetComponentByClass(UStaticMeshComponent::StaticClass()));
@@ -152,13 +120,18 @@ void UInventoryComponent::ChAttachItem(int32 Number)
 							USkeletalMeshComponent *Mesh = Cast<USkeletalMeshComponent>(Owner->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
 							if (Mesh)
 							{
-								AttachItem->AttachToComponent(Mesh, FAttachmentTransformRules::SnapToTargetIncludingScale, FName("Ep"));
 								AttachItem->SetActorRelativeLocation(FoundItem->AttachLocation);
-								AttachItem->SetActorRelativeRotation(FoundItem->AttachRotation);
 								AttachItem->SetActorRelativeScale3D(FoundItem->AttachScale);
+								AttachItem->AttachToComponent(Mesh, FAttachmentTransformRules::SnapToTargetIncludingScale, FName("Ep"));
+								AttachItem->SetActorRelativeRotation(FoundItem->AttachRotation);
+
+								if (AttachItem->GetClass()->ImplementsInterface(UBattery::StaticClass()))
+								{
+									IBattery::Execute_SetBatteryLevel(AttachItem, Inventory[Number].Currentbattery);
+									UE_LOG(LogTemp,Warning,TEXT("%d"), IBattery::Execute_GetBatteryLevel(AttachItem));
+								}
 							}
 						}
-
 						UE_LOG(LogTemp, Log, TEXT("서버에서 아이템 %s 생성 완료"), *FoundItem->Name.ToString());
 					}
 				}
@@ -170,13 +143,30 @@ void UInventoryComponent::ChAttachItem(int32 Number)
 void UInventoryComponent::OnRep_Inventory()
 {
 	ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
-	reloadinventory(Ch->SelectInventory);
+	if (Inventory[Ch->SelectInventory].Itemcount == 0)
+	{
+		reloadinventory(true);
+		return;
+	}
+	if (InventoryWidget)
+	{
+		InventoryWidget->OnInventoryUpdated(Ch->SelectInventory);
+		if (AttachItem)
+		{
+			reloadinventory(false);
+		}
+		else
+		{
+			reloadinventory(true);
+		}
+	}
 }
 
 void UInventoryComponent::OnRep_HandItem()
 {
 	if (AttachItem)
 	{
+		AttachItem->SetOwner(GetOwner());
 		ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
 		UDataTable *MyDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/06_Inventory/ItemData/DT_ItemData.DT_ItemData"));
 		if (MyDataTable && Inventory[Ch->SelectInventory].Itemcount != 0)
@@ -186,17 +176,16 @@ void UInventoryComponent::OnRep_HandItem()
 			FItemData *FoundItem = MyDataTable->FindRow<FItemData>(RowName, ContextString);
 			if (FoundItem)
 			{
-
 				AActor *Owner = GetOwner();
 				if (Owner)
 				{
 					USkeletalMeshComponent *Mesh = Cast<USkeletalMeshComponent>(Owner->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
 					if (Mesh)
 					{
-						AttachItem->AttachToComponent(Mesh, FAttachmentTransformRules::SnapToTargetIncludingScale, FName("Ep"));
-						AttachItem->SetActorRelativeLocation(FoundItem->AttachLocation);
+												AttachItem->SetActorRelativeLocation(FoundItem->AttachLocation);
 						AttachItem->SetActorRelativeRotation(FoundItem->AttachRotation);
 						AttachItem->SetActorRelativeScale3D(FoundItem->AttachScale);
+						AttachItem->AttachToComponent(Mesh, FAttachmentTransformRules::SnapToTargetIncludingScale, FName("Ep"));
 						UE_LOG(LogTemp, Log, TEXT("클라이언트에서 아이템 부착 완료"));
 					}
 				}
@@ -205,7 +194,7 @@ void UInventoryComponent::OnRep_HandItem()
 	}
 }
 
-void UInventoryComponent::DropItem_Implementation(int32 Number)
+void UInventoryComponent::DropItem_Implementation(int32 Number, bool DropItemSpawn)
 {
 
 	UDataTable *MyDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/06_Inventory/ItemData/DT_ItemData.DT_ItemData"));
@@ -221,20 +210,22 @@ void UInventoryComponent::DropItem_Implementation(int32 Number)
 			UWorld *World = GetWorld();
 			if (World && FoundItem->Class)
 			{
-				FVector SpawnLocation = GetOwner()->GetActorLocation();
-				FRotator SpawnRotation = GetOwner()->GetActorRotation();
-
-				ABaseItem *SpawnedItem = World->SpawnActor<ABaseItem>(FoundItem->Class, SpawnLocation, SpawnRotation);
-				if (SpawnedItem)
+				if(DropItemSpawn)
 				{
-					SpawnedItem->itemdata.ItemID = Inventory[Number].ItemID;
-					SpawnedItem->itemdata.Itemcount = 1;
-					if(SpawnedItem->GetClass()->ImplementsInterface(UBattery::StaticClass()))
+					FVector SpawnLocation = GetOwner()->GetActorLocation();
+					FRotator SpawnRotation = GetOwner()->GetActorRotation();
+
+					ABaseItem *SpawnedItem = World->SpawnActor<ABaseItem>(FoundItem->Class, SpawnLocation, SpawnRotation);
+					if (SpawnedItem)
 					{
-						bool Isuse = IBattery::Execute_GetSwitch(AttachItem);
-						IBattery::Execute_SetBatteryLevel(SpawnedItem, IBattery::Execute_GetBatteryLevel(AttachItem));
-						UE_LOG(LogTemp,Warning,TEXT("%d"), Isuse);
-						IBattery::Execute_SetSwitch(SpawnedItem, Isuse);
+						SpawnedItem->itemdata.ItemID = Inventory[Number].ItemID;
+						SpawnedItem->itemdata.Itemcount = 1;
+						if (SpawnedItem->GetClass()->ImplementsInterface(UBattery::StaticClass()))
+						{
+							bool Isuse = IBattery::Execute_GetSwitch(AttachItem);
+							IBattery::Execute_SetBatteryLevel(SpawnedItem, IBattery::Execute_GetBatteryLevel(AttachItem));
+							IBattery::Execute_SetSwitch(SpawnedItem, Isuse);
+						}
 					}
 				}
 				Inventory[Number].Itemcount--;
@@ -242,7 +233,7 @@ void UInventoryComponent::DropItem_Implementation(int32 Number)
 				{
 					Inventory[Number].ItemID.RowName = FName("None");
 				}
-				reloadinventory(Number);
+				reloadinventory(true);
 			}
 		}
 	}

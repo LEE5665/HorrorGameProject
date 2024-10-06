@@ -54,12 +54,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
 	int32 InventorySlot = 6;
 
-	void loadinventory();
-
-	void reloadinventory(int32 Number);
+	UFUNCTION(BlueprintCallable)
+	void reloadinventory(bool AttachLoad);
 
 	UFUNCTION(Server, Reliable)
-	void DropItem(int32 Number);
+	void DropItem(int32 Number, bool DropItemSpawn);
 
 	UFUNCTION()
 	void OnRep_Inventory();
@@ -73,10 +72,7 @@ public:
 	UFUNCTION(Server, Reliable)
 	void ServerUse();
 
-	UFUNCTION(NetMulticast, Reliable)
-	void MultiUse();
-
-	
+	int32 PastInventorySlot = 0;
 
 	// UFUNCTION(BlueprintCallable, Category = "Inventory")
 	// bool AddItem(const FItem& NewItem);
