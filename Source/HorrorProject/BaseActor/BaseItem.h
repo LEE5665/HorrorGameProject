@@ -24,7 +24,18 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HandStaticMesh")
+	FVector AttachLocation;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HandStaticMesh")
+	FRotator AttachRotation;
+
+	UFUNCTION(BlueprintNativeEvent)
+	void Use();
+
 	void AddItem(AActor* inventoryOwner);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HandStaticMesh")
+	class UStaticMeshComponent* ItemMesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemData")
 	FItem itemdata;

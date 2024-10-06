@@ -17,10 +17,16 @@ struct FItem
 
 public:
 	FItem()
-        : Itemcount(0)
+        : Itemcount(0),
+        Maxbattery(0),
+        Currentbattery(0)
     {}
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemData")
     FDataTableRowHandle ItemID;
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemData")
     int32 Itemcount;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemData")
+    int32 Maxbattery;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemData")
+    int32 Currentbattery;
 };

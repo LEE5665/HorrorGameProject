@@ -8,6 +8,7 @@
 #include "Blueprint/UserWidget.h"
 #include "InventoryComponent.generated.h"
 
+class ABaseItem;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class HORRORPROJECT_API UInventoryComponent : public UActorComponent
@@ -22,6 +23,14 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+private:
+	// UPROPERTY(Replicated)
+    // FVector AttachLocation;
+	// UPROPERTY(Replicated)
+    // FRotator AttachRotation;
+	// UPROPERTY(Replicated)
+    // FVector AttachScale;
+
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
@@ -34,6 +43,11 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, ReplicatedUsing=OnRep_Inventory, Category = "Inventory")
 	TArray<FItem> Inventory;
+
+	UFUNCTION(Server, Reliable)
+	void ServerAttachItem(int32 Number);
+
+	void ChAttachItem(int32 Number);
 
 	virtual void GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const override;
 
@@ -49,6 +63,20 @@ public:
 
 	UFUNCTION()
 	void OnRep_Inventory();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, ReplicatedUsing=OnRep_HandItem, Category = "Inventory")
+	ABaseItem *AttachItem;
+
+	UFUNCTION()
+	void OnRep_HandItem();
+
+	UFUNCTION(Server, Reliable)
+	void ServerUse();
+
+	UFUNCTION(NetMulticast, Reliable)
+	void MultiUse();
+
+	
 
 	// UFUNCTION(BlueprintCallable, Category = "Inventory")
 	// bool AddItem(const FItem& NewItem);
