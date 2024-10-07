@@ -1,242 +1,242 @@
 [
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\BaseActor\\BaseDoor.cpp",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\BaseActor\\BaseDoor.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\BaseActor\\BaseDoor.h",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\BaseActor\\BaseDoor.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\BaseActor\\BaseItem.cpp",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\BaseActor\\BaseItem.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\BaseActor\\BaseItem.h",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\BaseActor\\BaseItem.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\InteractComponent.cpp",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\InteractComponent.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\InteractComponent.h",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\InteractComponent.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\InventoryComponent.cpp",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\InventoryComponent.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\InventoryComponent.h",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\InventoryComponent.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\StatusComponent.cpp",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\StatusComponent.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\StatusComponent.h",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Component\\Player\\StatusComponent.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\HorrorProject.Build.cs",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\HorrorProject.Build.cs",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\HorrorProject.cpp",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\HorrorProject.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\HorrorProject.h",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\HorrorProject.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Interface\\Battery.cpp",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Interface\\Battery.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Interface\\Battery.h",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Interface\\Battery.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Struct\\Item.cpp",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Struct\\Item.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Struct\\Item.h",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Struct\\Item.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Struct\\ItemData.cpp",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Struct\\ItemData.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Struct\\ItemData.h",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Struct\\ItemData.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Struct\\SFX.cpp",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Struct\\SFX.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Struct\\SFX.h",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Struct\\SFX.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\TP_ThirdPerson\\TP_ThirdPerson.h",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\TP_ThirdPerson\\TP_ThirdPerson.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\TP_ThirdPerson\\TP_ThirdPersonCharacter.cpp",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\TP_ThirdPerson\\TP_ThirdPersonCharacter.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\TP_ThirdPerson\\TP_ThirdPersonCharacter.h",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\TP_ThirdPerson\\TP_ThirdPersonCharacter.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\TP_ThirdPerson\\TP_ThirdPersonGameMode.cpp",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\TP_ThirdPerson\\TP_ThirdPersonGameMode.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\TP_ThirdPerson\\TP_ThirdPersonGameMode.h",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\TP_ThirdPerson\\TP_ThirdPersonGameMode.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Widget\\InventoryWidget.cpp",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Widget\\InventoryWidget.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Widget\\InventoryWidget.h",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Widget\\InventoryWidget.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Widget\\StatusWidget.cpp",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Widget\\StatusWidget.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Task\\GitHub\\HorrorProject\\Source\\HorrorProject\\Widget\\StatusWidget.h",
+		"file": "C:\\Task\\Github\\HorrorProject\\Source\\HorrorProject\\Widget\\StatusWidget.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Task\\GitHub\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+			"@C:\\Task\\Github\\HorrorProject\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
 		],
-		"directory": "D:\\Task\\UE\\Engine\\UE_5.4\\Engine\\Source"
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	}
 ]

@@ -66,6 +66,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, ReplicatedUsing=OnRep_HandItem, Category = "Inventory")
 	ABaseItem *AttachItem;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "Inventory")
+	ABaseItem *AttachItem2;
+
 	UFUNCTION()
 	void OnRep_HandItem();
 

@@ -53,7 +53,7 @@ void UInventoryComponent::ServerUse_Implementation()
 {
 	if (GetOwner()->HasAuthority())
 	{
-		if(AttachItem)
+		if (AttachItem)
 		{
 			AttachItem->Use();
 		}
@@ -74,7 +74,8 @@ void UInventoryComponent::reloadinventory(bool AttachLoad)
 	{
 		ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
 		InventoryWidget->OnInventoryUpdated(Ch->SelectInventory);
-		if(AttachLoad == true){
+		if (AttachLoad == true)
+		{
 			ServerAttachItem(Ch->SelectInventory);
 		}
 	}
@@ -117,18 +118,26 @@ void UInventoryComponent::ChAttachItem(int32 Number)
 						AActor *Owner = GetOwner();
 						if (Owner && GetOwnerRole() == ROLE_Authority)
 						{
-							USkeletalMeshComponent *Mesh = Cast<USkeletalMeshComponent>(Owner->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
-							if (Mesh)
+							TArray<USkeletalMeshComponent *> SkeletalMeshes;
+							Owner->GetComponents<USkeletalMeshComponent>(SkeletalMeshes);
+							for (USkeletalMeshComponent *Mesh : SkeletalMeshes)
 							{
-								AttachItem->SetActorRelativeLocation(FoundItem->AttachLocation);
-								AttachItem->SetActorRelativeScale3D(FoundItem->AttachScale);
-								AttachItem->AttachToComponent(Mesh, FAttachmentTransformRules::SnapToTargetIncludingScale, FName("Ep"));
-								AttachItem->SetActorRelativeRotation(FoundItem->AttachRotation);
-
-								if (AttachItem->GetClass()->ImplementsInterface(UBattery::StaticClass()))
+								if (Mesh)
 								{
-									IBattery::Execute_SetBatteryLevel(AttachItem, Inventory[Number].Currentbattery);
-									UE_LOG(LogTemp,Warning,TEXT("%d"), IBattery::Execute_GetBatteryLevel(AttachItem));
+									if (Mesh->ComponentHasTag("Body"))
+									{
+										AttachItem->AttachToComponent(Mesh, FAttachmentTransformRules::SnapToTargetIncludingScale, FName("Ep"));
+										AttachItem->SetActorRelativeLocation(FoundItem->AttachLocation);
+										AttachItem->SetActorRelativeScale3D(FoundItem->AttachScale);
+										AttachItem->SetActorRelativeRotation(FoundItem->AttachRotation);
+
+										if (AttachItem->GetClass()->ImplementsInterface(UBattery::StaticClass()))
+										{
+											IBattery::Execute_SetBatteryLevel(AttachItem, Inventory[Number].Currentbattery);
+											UE_LOG(LogTemp, Warning, TEXT("%d"), IBattery::Execute_GetBatteryLevel(AttachItem));
+											
+										}
+									}
 								}
 							}
 						}
@@ -179,14 +188,21 @@ void UInventoryComponent::OnRep_HandItem()
 				AActor *Owner = GetOwner();
 				if (Owner)
 				{
-					USkeletalMeshComponent *Mesh = Cast<USkeletalMeshComponent>(Owner->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
-					if (Mesh)
+					TArray<USkeletalMeshComponent *> SkeletalMeshes;
+					Owner->GetComponents<USkeletalMeshComponent>(SkeletalMeshes);
+					for (USkeletalMeshComponent *Mesh : SkeletalMeshes)
 					{
-												AttachItem->SetActorRelativeLocation(FoundItem->AttachLocation);
-						AttachItem->SetActorRelativeRotation(FoundItem->AttachRotation);
-						AttachItem->SetActorRelativeScale3D(FoundItem->AttachScale);
-						AttachItem->AttachToComponent(Mesh, FAttachmentTransformRules::SnapToTargetIncludingScale, FName("Ep"));
-						UE_LOG(LogTemp, Log, TEXT("클라이언트에서 아이템 부착 완료"));
+						if (Mesh)
+						{
+							if (Mesh->ComponentHasTag("Body"))
+							{
+								AttachItem->AttachToComponent(Mesh, FAttachmentTransformRules::SnapToTargetIncludingScale, FName("Ep"));
+								AttachItem->SetActorRelativeLocation(FoundItem->AttachLocation);
+								AttachItem->SetActorRelativeRotation(FoundItem->AttachRotation);
+								AttachItem->SetActorRelativeScale3D(FoundItem->AttachScale);
+								UE_LOG(LogTemp, Log, TEXT("클라이언트에서 아이템 부착 완료"));
+							}
+						}
 					}
 				}
 			}
@@ -210,7 +226,7 @@ void UInventoryComponent::DropItem_Implementation(int32 Number, bool DropItemSpa
 			UWorld *World = GetWorld();
 			if (World && FoundItem->Class)
 			{
-				if(DropItemSpawn)
+				if (DropItemSpawn)
 				{
 					FVector SpawnLocation = GetOwner()->GetActorLocation();
 					FRotator SpawnRotation = GetOwner()->GetActorRotation();
