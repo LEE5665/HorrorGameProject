@@ -60,14 +60,14 @@ public:
 	UFUNCTION(Server, Reliable)
 	void DropItem(int32 Number, bool DropItemSpawn);
 
+	UFUNCTION(Server, Reliable)
+	void ServerMotion();
+
 	UFUNCTION()
 	void OnRep_Inventory();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, ReplicatedUsing=OnRep_HandItem, Category = "Inventory")
 	ABaseItem *AttachItem;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "Inventory")
-	ABaseItem *AttachItem2;
 
 	UFUNCTION()
 	void OnRep_HandItem();
@@ -76,6 +76,9 @@ public:
 	void ServerUse();
 
 	int32 PastInventorySlot = 0;
+
+	UFUNCTION(Client, Reliable)
+	void ClientReload(bool AttachLoad);
 
 	// UFUNCTION(BlueprintCallable, Category = "Inventory")
 	// bool AddItem(const FItem& NewItem);

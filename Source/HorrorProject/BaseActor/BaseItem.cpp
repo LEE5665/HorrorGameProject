@@ -114,10 +114,12 @@ void ABaseItem::AddItem(AActor *inventoryOwner)
 					if (Ch->SelectInventory == i)
 					{
 						InventoryComp->reloadinventory(true);
+						InventoryComp->ClientReload(true);
 					}
 					else
 					{
 						InventoryComp->reloadinventory(false);
+						InventoryComp->ClientReload(false);
 					}
 					Destroy();
 					return;

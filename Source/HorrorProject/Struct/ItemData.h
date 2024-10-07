@@ -9,12 +9,12 @@
 #include "ItemData.generated.h"
 
 UENUM(BlueprintType)
-enum class ESFX : uint8
+enum class EMotion : uint8
 {
-    PickupSound   UMETA(DisplayName = "Pickup"),
-    DropSound     UMETA(DisplayName = "Drop"),
-    UseSound      UMETA(DisplayName = "Use")
+    Default   UMETA(DisplayName = "Default"),
+    FlashLight   UMETA(DisplayName = "FlashLight")
 };
+
 
 USTRUCT(BlueprintType)
 struct FItemData : public FTableRowBase
@@ -38,6 +38,9 @@ public:
     FSFX SFX;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Properties")
+    EMotion Motion;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Properties")
     int32 SlotQuantity;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Properties")
@@ -55,6 +58,7 @@ public:
         , Description(FName("Default Description"))
         , Image(nullptr)
         , Class(nullptr)
+        , Motion(EMotion::Default)
         , SlotQuantity(1)
         , AttachLocation(FVector::ZeroVector)
         , AttachRotation(FRotator::ZeroRotator)
