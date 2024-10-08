@@ -107,7 +107,6 @@ void ATP_ThirdPersonCharacter::Drop(){
 
 void ATP_ThirdPersonCharacter::LeftClick()
 {
-	UE_LOG(LogTemp,Warning,TEXT("로그"));
 	InventoryComponent->ServerUse();
 }
 
