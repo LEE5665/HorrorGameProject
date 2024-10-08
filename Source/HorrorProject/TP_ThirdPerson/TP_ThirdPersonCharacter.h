@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
+#include "../Struct/ItemData.h"
 #include "TP_ThirdPersonCharacter.generated.h"
 
 class USpringArmComponent;
@@ -78,5 +79,10 @@ public:
 	class UStatusComponent* StatusComponent;
 	UPROPERTY(BlueprintReadWrite)
 	int32 SelectInventory = 0;
+	UPROPERTY(Replicated, BlueprintReadWrite)
+	EMotion CurrentMotion = EMotion::Default;
+
+private:
+	virtual void GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const override;
 };
 

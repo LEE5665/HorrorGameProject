@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Net/UnrealNetwork.h"
 #include "../../Interface/Battery.h"
+#include "../../Struct/ItemData.h"
 #include "InventoryComponent.h"
 
 // Sets default values for this component's properties
@@ -78,7 +79,22 @@ void UInventoryComponent::reloadinventory(bool AttachLoad)
 		{
 			ServerAttachItem(Ch->SelectInventory);
 		}
+		ServerMotion();
 	}
+}
+
+void UInventoryComponent::ClientReload_Implementation(bool AttachLoad)
+{
+	reloadinventory(AttachLoad);
+}
+
+void UInventoryComponent::ServerMotion_Implementation()
+{
+		ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
+		if (Inventory[Ch->SelectInventory].Itemcount == 0)
+		{
+			Ch->CurrentMotion = EMotion::Default;
+		}
 }
 
 void UInventoryComponent::ServerAttachItem_Implementation(int32 Number)
@@ -130,6 +146,8 @@ void UInventoryComponent::ChAttachItem(int32 Number)
 										AttachItem->SetActorRelativeLocation(FoundItem->AttachLocation);
 										AttachItem->SetActorRelativeScale3D(FoundItem->AttachScale);
 										AttachItem->SetActorRelativeRotation(FoundItem->AttachRotation);
+										ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(Owner);
+										Ch->CurrentMotion = FoundItem->Motion;
 
 										if (AttachItem->GetClass()->ImplementsInterface(UBattery::StaticClass()))
 										{
