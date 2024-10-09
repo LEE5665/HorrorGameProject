@@ -74,12 +74,13 @@ void UInventoryComponent::reloadinventory(bool AttachLoad)
 	if (InventoryWidget)
 	{
 		ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
+		UE_LOG(LogTemp,Warning,TEXT("%d"), Ch->SelectInventory);
 		InventoryWidget->OnInventoryUpdated(Ch->SelectInventory);
 		if (AttachLoad == true)
 		{
 			ServerAttachItem(Ch->SelectInventory);
 		}
-		ServerMotion();
+		ServerMotion(Ch->SelectInventory);
 	}
 }
 
@@ -88,10 +89,10 @@ void UInventoryComponent::ClientReload_Implementation(bool AttachLoad)
 	reloadinventory(AttachLoad);
 }
 
-void UInventoryComponent::ServerMotion_Implementation()
+void UInventoryComponent::ServerMotion_Implementation(int32 selectedinventory)
 {
 		ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
-		if (Inventory[Ch->SelectInventory].Itemcount == 0)
+		if (Inventory[selectedinventory].Itemcount == 0)
 		{
 			Ch->CurrentMotion = EMotion::Default;
 		}
@@ -169,6 +170,7 @@ void UInventoryComponent::ChAttachItem(int32 Number)
 
 void UInventoryComponent::OnRep_Inventory()
 {
+	UE_LOG(LogTemp,Warning,TEXT("인벤토리 재로딩!!"));
 	ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
 	if (Inventory[Ch->SelectInventory].Itemcount == 0)
 	{

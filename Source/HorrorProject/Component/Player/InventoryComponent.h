@@ -61,7 +61,7 @@ public:
 	void DropItem(int32 Number, bool DropItemSpawn);
 
 	UFUNCTION(Server, Reliable)
-	void ServerMotion();
+	void ServerMotion(int32 selectedinventory);
 
 	UFUNCTION()
 	void OnRep_Inventory();

@@ -77,7 +77,7 @@ public:
 	class UInventoryComponent* InventoryComponent;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
 	class UStatusComponent* StatusComponent;
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(Replicated, BlueprintReadWrite)
 	int32 SelectInventory = 0;
 	UPROPERTY(Replicated, BlueprintReadWrite)
 	EMotion CurrentMotion = EMotion::Default;
