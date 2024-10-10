@@ -76,14 +76,7 @@ void ABaseItem::AddItem(AActor *inventoryOwner)
 								InventoryComp->ServerAttachItem(Ch->SelectInventory);
 								UE_LOG(LogTemp, Warning, TEXT("남의 아이템 뺏음!"));
 							}
-							ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(inventoryOwner);
-							if(Ch->SelectInventory == i)
-							{
-								InventoryComp->reloadinventory(true);
-							}
-							else {
-								InventoryComp->reloadinventory(false);
-							}
+							InventoryComp->reloadinventory();
 							Destroy();
 							return;
 						}
@@ -110,17 +103,7 @@ void ABaseItem::AddItem(AActor *inventoryOwner)
 							UE_LOG(LogTemp,Warning,TEXT("남의 아이템 뺏음!"));
 						}
 					}
-					ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(inventoryOwner);
-					if (Ch->SelectInventory == i)
-					{
-						InventoryComp->reloadinventory(true);
-						InventoryComp->ClientReload(true);
-					}
-					else
-					{
-						InventoryComp->reloadinventory(false);
-						InventoryComp->ClientReload(false);
-					}
+					InventoryComp->reloadinventory();
 					Destroy();
 					return;
 				}

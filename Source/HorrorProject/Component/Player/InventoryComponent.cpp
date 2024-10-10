@@ -69,24 +69,16 @@ void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	// ...
 }
 
-void UInventoryComponent::reloadinventory(bool AttachLoad)
+void UInventoryComponent::reloadinventory()
 {
 	if (InventoryWidget)
 	{
 		ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
 		UE_LOG(LogTemp,Warning,TEXT("%d"), Ch->SelectInventory);
 		InventoryWidget->OnInventoryUpdated(Ch->SelectInventory);
-		if (AttachLoad == true)
-		{
-			ServerAttachItem(Ch->SelectInventory);
-		}
+		ServerAttachItem(Ch->SelectInventory);
 		ServerMotion(Ch->SelectInventory);
 	}
-}
-
-void UInventoryComponent::ClientReload_Implementation(bool AttachLoad)
-{
-	reloadinventory(AttachLoad);
 }
 
 void UInventoryComponent::ServerMotion_Implementation(int32 selectedinventory)
@@ -109,7 +101,12 @@ void UInventoryComponent::ChAttachItem(int32 Number)
 	{
 		if (AttachItem)
 		{
+			if(Inventory[Number].ItemID.RowName == AttachItem->itemdata.ItemID.RowName)
+			{
+				return;
+			}
 			AttachItem->Destroy();
+			AttachItem = nullptr;
 		}
 
 		UDataTable *MyDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/06_Inventory/ItemData/DT_ItemData.DT_ItemData"));
@@ -172,22 +169,10 @@ void UInventoryComponent::OnRep_Inventory()
 {
 	UE_LOG(LogTemp,Warning,TEXT("인벤토리 재로딩!!"));
 	ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
-	if (Inventory[Ch->SelectInventory].Itemcount == 0)
-	{
-		reloadinventory(true);
-		return;
-	}
 	if (InventoryWidget)
 	{
 		InventoryWidget->OnInventoryUpdated(Ch->SelectInventory);
-		if (AttachItem)
-		{
-			reloadinventory(false);
-		}
-		else
-		{
-			reloadinventory(true);
-		}
+		reloadinventory();
 	}
 }
 
@@ -269,7 +254,7 @@ void UInventoryComponent::DropItem_Implementation(int32 Number, bool DropItemSpa
 				{
 					Inventory[Number].ItemID.RowName = FName("None");
 				}
-				reloadinventory(true);
+				reloadinventory();
 			}
 		}
 	}

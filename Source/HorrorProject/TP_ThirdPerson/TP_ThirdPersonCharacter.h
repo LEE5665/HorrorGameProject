@@ -81,6 +81,8 @@ public:
 	int32 SelectInventory = 0;
 	UPROPERTY(Replicated, BlueprintReadWrite)
 	EMotion CurrentMotion = EMotion::Default;
+	UFUNCTION(Server, Reliable)
+	void ServerSelectInventorySlot(int32 Number);
 
 private:
 	virtual void GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const override;

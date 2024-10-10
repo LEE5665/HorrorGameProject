@@ -55,7 +55,7 @@ public:
 	int32 InventorySlot = 6;
 
 	UFUNCTION(BlueprintCallable)
-	void reloadinventory(bool AttachLoad);
+	void reloadinventory();
 
 	UFUNCTION(Server, Reliable)
 	void DropItem(int32 Number, bool DropItemSpawn);
@@ -76,9 +76,6 @@ public:
 	void ServerUse();
 
 	int32 PastInventorySlot = 0;
-
-	UFUNCTION(Client, Reliable, BlueprintCallable)
-	void ClientReload(bool AttachLoad);
 
 	// UFUNCTION(BlueprintCallable, Category = "Inventory")
 	// bool AddItem(const FItem& NewItem);

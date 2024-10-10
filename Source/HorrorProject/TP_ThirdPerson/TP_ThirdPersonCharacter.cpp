@@ -127,7 +127,17 @@ void ATP_ThirdPersonCharacter::SelectInventorySlot(const FInputActionValue &Valu
 	InventoryComponent->PastInventorySlot=SelectInventory;
 	SelectInventory = FMath::RoundToInt(SlotNumber)-1;
 	UE_LOG(LogTemp, Log, TEXT("Inventory Slot %d selected"), SelectInventory);
-	InventoryComponent->reloadinventory(true);
+	ServerSelectInventorySlot(SelectInventory);
+	InventoryComponent->reloadinventory();
+}
+void ATP_ThirdPersonCharacter::ServerSelectInventorySlot_Implementation(int32 Number)
+{
+	SelectInventory = Number;
+	if(InventoryComponent->AttachItem)
+	{
+		InventoryComponent->AttachItem->Destroy();
+		InventoryComponent->AttachItem=nullptr;
+	}
 }
 
 void ATP_ThirdPersonCharacter::Move(const FInputActionValue& Value)
@@ -170,4 +180,5 @@ void ATP_ThirdPersonCharacter::GetLifetimeReplicatedProps(TArray< FLifetimePrope
 {
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     DOREPLIFETIME(ATP_ThirdPersonCharacter, CurrentMotion);
+	DOREPLIFETIME(ATP_ThirdPersonCharacter, SelectInventory);
 }
