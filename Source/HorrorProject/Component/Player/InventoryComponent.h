@@ -77,7 +77,7 @@ public:
 
 	int32 PastInventorySlot = 0;
 
-	UFUNCTION(Client, Reliable)
+	UFUNCTION(Client, Reliable, BlueprintCallable)
 	void ClientReload(bool AttachLoad);
 
 	// UFUNCTION(BlueprintCallable, Category = "Inventory")
