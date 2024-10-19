@@ -234,7 +234,7 @@ void UInventoryComponent::DropItem_Implementation(int32 Number, bool DropItemSpa
 				if (DropItemSpawn)
 				{
 					FVector SpawnLocation = GetOwner()->GetActorLocation();
-					FRotator SpawnRotation = GetOwner()->GetActorRotation();
+					FRotator SpawnRotation = AttachItem->GetActorRotation();
 
 					ABaseItem *SpawnedItem = World->SpawnActor<ABaseItem>(FoundItem->Class, SpawnLocation, SpawnRotation);
 					if (SpawnedItem)

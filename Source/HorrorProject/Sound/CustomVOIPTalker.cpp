@@ -18,6 +18,6 @@ void UCustomVOIPTalker::UpdateVolume()
 {
     if (CurrentAudioComponent)
     {
-        CurrentAudioComponent->SetVolumeMultiplier(PlayerVolume);
+        CurrentAudioComponent->AdjustVolume(0.001f, PlayerVolume);
     }
 }
