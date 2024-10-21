@@ -52,6 +52,10 @@ void UInteractComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
     FHitResult HitResult;
 
     FCollisionQueryParams TraceParams;
+    if(!GetOwner())
+    {
+        return;
+    }
     TraceParams.AddIgnoredActor(GetOwner());
 
     APawn *Pawn = Cast<APawn>(GetOwner());
@@ -68,7 +72,6 @@ void UInteractComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 
             bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, TraceParams);
             // DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 1.0f, 0, 2.0f);
-
             if (bHit && HitResult.GetActor() && HitResult.GetComponent())
             {
                 if (HitResult.GetComponent()->ComponentHasTag(FName("Hit")))

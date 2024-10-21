@@ -1,0 +1,23 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.Moderation.cpp.obj": [
+			"Moderation.init.gen.cpp.obj",
+			"ModerationSubsystem.gen.cpp.obj",
+			"Report.gen.cpp.obj",
+			"ReportResponse.gen.cpp.obj",
+			"ModerationApi.cpp.obj",
+			"ModerationModule.cpp.obj",
+			"ModerationSubsystem.cpp.obj",
+			"OpenAPIBaseModel.cpp.obj",
+			"OpenAPIErrorsErrorResponseBody.cpp.obj",
+			"OpenAPIHelpers.cpp.obj",
+			"OpenAPIModelPlayersRequest.cpp.obj",
+			"OpenAPIModelPostReportRequest.cpp.obj",
+			"OpenAPIModelVivoxChannelRequest.cpp.obj",
+			"OpenAPIReportApi.cpp.obj",
+			"OpenAPIReportApiOperations.cpp.obj",
+			"WrappedModerationApi.cpp.obj"
+		]
+	}
+}
