@@ -26,6 +26,8 @@ void UInventoryComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
+	APlayerState *PC = Cast<APlayerState>(GetOwner());
+
 	Inventory.SetNum(InventorySlot);
 	AActor *Owner = GetOwner();
 	if (Owner)
