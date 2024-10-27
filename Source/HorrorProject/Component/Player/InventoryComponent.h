@@ -45,9 +45,7 @@ public:
 	TArray<FItem> Inventory;
 
 	UFUNCTION(Server, Reliable)
-	void ServerAttachItem(int32 Number);
-
-	void ChAttachItem(int32 Number);
+	void ServerAttachItem();
 
 	virtual void GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const override;
 

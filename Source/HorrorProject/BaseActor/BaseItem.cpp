@@ -73,7 +73,7 @@ void ABaseItem::AddItem(AActor *inventoryOwner)
 							{
 								ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(ItemOwner);
 								Ch->InventoryComponent->DropItem(Ch->SelectInventory, false);
-								InventoryComp->ServerAttachItem(Ch->SelectInventory);
+								InventoryComp->ServerAttachItem();
 								UE_LOG(LogTemp, Warning, TEXT("남의 아이템 뺏음!"));
 							}
 							InventoryComp->reloadinventory();
@@ -94,12 +94,13 @@ void ABaseItem::AddItem(AActor *inventoryOwner)
 					{
 						InventoryComp->Inventory[i].Maxbattery = IBattery::Execute_GetMaxBatteryLevel(this);
 						InventoryComp->Inventory[i].Currentbattery = IBattery::Execute_GetBatteryLevel(this);
+						UE_LOG(LogTemp,Warning,TEXT("Max %d Current %d"), IBattery::Execute_GetMaxBatteryLevel(this), IBattery::Execute_GetBatteryLevel(this));
 						AActor *ItemOwner = GetOwner();
 						if(Owner)
 						{
 							ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(ItemOwner);
 							Ch->InventoryComponent->DropItem(Ch->SelectInventory, false);
-							InventoryComp->ServerAttachItem(Ch->SelectInventory);
+							InventoryComp->ServerAttachItem();
 							UE_LOG(LogTemp,Warning,TEXT("남의 아이템 뺏음!"));
 						}
 					}

@@ -76,9 +76,9 @@ void UInventoryComponent::reloadinventory()
 	if (InventoryWidget)
 	{
 		ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
-		UE_LOG(LogTemp,Warning,TEXT("%d"), Ch->SelectInventory);
+		//UE_LOG(LogTemp,Warning,TEXT("%d"), Ch->SelectInventory);
 		InventoryWidget->OnInventoryUpdated(Ch->SelectInventory);
-		ServerAttachItem(Ch->SelectInventory);
+		ServerAttachItem();
 		ServerMotion(Ch->SelectInventory);
 	}
 }
@@ -92,18 +92,13 @@ void UInventoryComponent::ServerMotion_Implementation(int32 selectedinventory)
 		}
 }
 
-void UInventoryComponent::ServerAttachItem_Implementation(int32 Number)
+void UInventoryComponent::ServerAttachItem_Implementation()
 {
-	ChAttachItem(Number);
-}
-
-void UInventoryComponent::ChAttachItem(int32 Number)
-{
-	if (GetOwnerRole() == ROLE_Authority)
-	{
+	ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
+	int32 Number = Ch->SelectInventory;
 		if (AttachItem)
 		{
-			if(Inventory[Number].ItemID.RowName == AttachItem->itemdata.ItemID.RowName)
+			if (Inventory[Number].ItemID.RowName == AttachItem->itemdata.ItemID.RowName)
 			{
 				return;
 			}
@@ -131,45 +126,24 @@ void UInventoryComponent::ChAttachItem(int32 Number)
 						{
 							StaticMeshComp->SetSimulatePhysics(false);
 						}
-						AActor *Owner = GetOwner();
-						if (Owner && GetOwnerRole() == ROLE_Authority)
+						if (AttachItem->GetClass()->ImplementsInterface(UBattery::StaticClass()))
 						{
-							TArray<USkeletalMeshComponent *> SkeletalMeshes;
-							Owner->GetComponents<USkeletalMeshComponent>(SkeletalMeshes);
-							for (USkeletalMeshComponent *Mesh : SkeletalMeshes)
-							{
-								if (Mesh)
-								{
-									if (Mesh->ComponentHasTag("Body"))
-									{
-										AttachItem->AttachToComponent(Mesh, FAttachmentTransformRules::SnapToTargetIncludingScale, FName("Ep"));
-										AttachItem->SetActorRelativeLocation(FoundItem->AttachLocation);
-										AttachItem->SetActorRelativeScale3D(FoundItem->AttachScale);
-										AttachItem->SetActorRelativeRotation(FoundItem->AttachRotation);
-										ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(Owner);
-										Ch->CurrentMotion = FoundItem->Motion;
-
-										if (AttachItem->GetClass()->ImplementsInterface(UBattery::StaticClass()))
-										{
-											IBattery::Execute_SetBatteryLevel(AttachItem, Inventory[Number].Currentbattery);
-											UE_LOG(LogTemp, Warning, TEXT("%d"), IBattery::Execute_GetBatteryLevel(AttachItem));
-											
-										}
-									}
-								}
-							}
+							IBattery::Execute_SetBatteryLevel(AttachItem, Inventory[Number].Currentbattery);
+							UE_LOG(LogTemp, Warning, TEXT("%d"), IBattery::Execute_GetBatteryLevel(AttachItem));
+							UE_LOG(LogTemp, Warning, TEXT("%d번째 슬롯의 배터리"), Number);
 						}
 						UE_LOG(LogTemp, Log, TEXT("서버에서 아이템 %s 생성 완료"), *FoundItem->Name.ToString());
+						Ch->CurrentMotion = FoundItem->Motion;
+						OnRep_HandItem();
 					}
 				}
 			}
 		}
-	}
 }
 
 void UInventoryComponent::OnRep_Inventory()
 {
-	UE_LOG(LogTemp,Warning,TEXT("인벤토리 재로딩!!"));
+	//UE_LOG(LogTemp,Warning,TEXT("인벤토리 재로딩!!"));
 	ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
 	if (InventoryWidget)
 	{
@@ -207,7 +181,7 @@ void UInventoryComponent::OnRep_HandItem()
 								AttachItem->SetActorRelativeLocation(FoundItem->AttachLocation);
 								AttachItem->SetActorRelativeRotation(FoundItem->AttachRotation);
 								AttachItem->SetActorRelativeScale3D(FoundItem->AttachScale);
-								UE_LOG(LogTemp, Log, TEXT("클라이언트에서 아이템 부착 완료"));
+								UE_LOG(LogTemp, Log, TEXT("아이템 부착 완료"));
 							}
 						}
 					}
