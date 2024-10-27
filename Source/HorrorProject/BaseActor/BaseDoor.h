@@ -25,7 +25,7 @@ public:
 
 	virtual void Interact();
 
-	UPROPERTY(Replicated)
+	UPROPERTY(Replicated,BlueprintReadWrite)
 	bool isDoorOpen = false;
 
 	UFUNCTION(BlueprintImplementableEvent)
