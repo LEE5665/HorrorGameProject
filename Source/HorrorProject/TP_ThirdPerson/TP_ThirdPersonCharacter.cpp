@@ -86,7 +86,7 @@ void ATP_ThirdPersonCharacter::SetupPlayerInputComponent(UInputComponent* Player
 		EnhancedInputComponent->BindAction(Interact, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::interact);
 		EnhancedInputComponent->BindAction(InventorySlot, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::SelectInventorySlot);
 		EnhancedInputComponent->BindAction(DropAction, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::Drop);
-		EnhancedInputComponent->BindAction(LeftClickAction, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::LeftClick);
+		EnhancedInputComponent->BindAction(LeftClickAction, ETriggerEvent::Started, this, &ATP_ThirdPersonCharacter::LeftClick);
 		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Started, this, &ATP_ThirdPersonCharacter::RunHold);
 		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Completed, this, &ATP_ThirdPersonCharacter::RunCompleted);
 	}
