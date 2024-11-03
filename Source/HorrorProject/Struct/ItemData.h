@@ -29,6 +29,9 @@ public:
     FName Description;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Properties")
+    int32 Price;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Properties")
     UTexture2D* Image;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Properties")
@@ -63,5 +66,6 @@ public:
         , AttachLocation(FVector::ZeroVector)
         , AttachRotation(FRotator::ZeroRotator)
         , AttachScale(FVector(1.0f, 1.0f, 1.0f))
+        , Price(1)
     {}
 };

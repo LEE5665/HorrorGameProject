@@ -176,6 +176,11 @@ void ATP_ThirdPersonCharacter::Look(const FInputActionValue& Value)
 	}
 }
 
+void ATP_ThirdPersonCharacter::SetOwnerToNull()
+{
+    SetOwner(nullptr);
+}
+
 void ATP_ThirdPersonCharacter::GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const
 {
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
