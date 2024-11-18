@@ -2,6 +2,7 @@
 
 #include "Components/StaticMeshComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "Kismet/GameplayStatics.h"
 #include "BaseDoor.h"
 
 // Sets default values
@@ -77,7 +78,27 @@ void ABaseDoor::Interact()
 {
     if (HasAuthority())
     {
-        isDoorOpen = !isDoorOpen;
+		if(isLock == true)
+		{
+			if(LockSound)
+			{
+				FVector Location = GetActorLocation();
+        		UGameplayStatics::PlaySoundAtLocation(this, LockSound, Location);
+			}
+		} else
+		{
+			isDoorOpen = !isDoorOpen;
+			if(isDoorOpen && OpenSound)
+			{
+				FVector Location = GetActorLocation();
+				UGameplayStatics::PlaySoundAtLocation(this, OpenSound, Location);
+			}
+			if(!isDoorOpen && CloseSound)
+			{
+				FVector Location = GetActorLocation();
+				UGameplayStatics::PlaySoundAtLocation(this, CloseSound, Location);
+			}
+		}		
     }
 }
 
@@ -85,4 +106,5 @@ void ABaseDoor::GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifet
 {
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     DOREPLIFETIME(ABaseDoor, isDoorOpen);
+	DOREPLIFETIME(ABaseDoor, isLock);
 }

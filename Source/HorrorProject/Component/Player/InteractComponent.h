@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Blueprint/UserWidget.h"
+#include "../../Widget/InteractWidget.h"
 #include "InteractComponent.generated.h"
 
 
@@ -34,6 +35,6 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> InteractionWidgetClass;
-	UUserWidget* InteractionWidget;
+	UInteractWidget* InteractionWidget;
 	FHitResult nHitActor;
 };

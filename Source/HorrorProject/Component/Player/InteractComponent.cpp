@@ -2,6 +2,7 @@
 
 #include "../../BaseActor/BaseDoor.h"
 #include "../../BaseActor/BaseItem.h"
+
 #include "InteractComponent.h"
 #include "GameFramework/Actor.h"
 #include "DrawDebugHelpers.h"
@@ -32,7 +33,7 @@ void UInteractComponent::BeginPlay()
             {
                 if (InteractionWidgetClass)
                 {
-                    InteractionWidget = CreateWidget<UUserWidget>(PlayerController, InteractionWidgetClass);
+                    InteractionWidget = CreateWidget<UInteractWidget>(PlayerController, InteractionWidgetClass);
                     if (InteractionWidget)
                     {
                         InteractionWidget->AddToViewport();
@@ -78,11 +79,16 @@ void UInteractComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
                 {
                     nHitActor = HitResult;
                     InteractionWidget->SetVisibility(ESlateVisibility::Visible);
+                    AActor *HitActor = nHitActor.GetActor();
+                    ABaseDoor *DoorActor = Cast<ABaseDoor>(HitActor);
+                    if(DoorActor->isLock == true)
+                        InteractionWidget->OnTextChange(FName("Lock"));
                 }
                 else
                 {
                     nHitActor = FHitResult();
                     InteractionWidget->SetVisibility(ESlateVisibility::Hidden);
+                    InteractionWidget->OnTextChange(FName("o"));
                 }
             }
             else

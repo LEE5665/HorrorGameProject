@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Sound/SoundBase.h"
 #include "BaseDoor.generated.h"
 
 UCLASS()
@@ -23,10 +24,14 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION(BlueprintCallable)
 	virtual void Interact();
 
 	UPROPERTY(Replicated,BlueprintReadWrite)
 	bool isDoorOpen = false;
+
+	UPROPERTY(Replicated,BlueprintReadWrite, EditAnywhere)
+	bool isLock = false;
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void ServerFunction();
@@ -39,6 +44,13 @@ private:
 	FVector RightInitialLocation;
 	FVector LeftOpenLocation;
 	FVector RightOpenLocation;
+
+	UPROPERTY(EditAnywhere, Category = "Sound")
+    USoundBase* OpenSound;
+	UPROPERTY(EditAnywhere, Category = "Sound")
+	USoundBase* CloseSound;
+	UPROPERTY(EditAnywhere, Category = "Sound")
+	USoundBase* LockSound;
 
 	virtual void GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const override;
 
