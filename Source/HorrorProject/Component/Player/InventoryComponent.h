@@ -55,7 +55,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void reloadinventory();
 
-	UFUNCTION(Server, Reliable)
+	UFUNCTION(Server, Reliable, BlueprintCallable)
 	void DropItem(int32 Number, bool DropItemSpawn);
 
 	UFUNCTION(Server, Reliable)

@@ -52,6 +52,9 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Sound")
 	USoundBase* LockSound;
 
+	UFUNCTION(NetMulticast, Reliable)
+	void SoundPlay(USoundBase* Sound, FVector Location);
+
 	virtual void GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const override;
 
 	UPROPERTY(EditAnyWhere, Category="Door")

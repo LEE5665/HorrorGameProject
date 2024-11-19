@@ -85,11 +85,24 @@ void UInventoryComponent::reloadinventory()
 
 void UInventoryComponent::ServerMotion_Implementation(int32 selectedinventory)
 {
-		ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
-		if (Inventory[selectedinventory].Itemcount == 0)
+	ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(GetOwner());
+	UDataTable *MyDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/06_Inventory/ItemData/DT_ItemData.DT_ItemData"));
+	if (MyDataTable)
+	{
+		if (AttachItem)
+		{
+			FName RowName = AttachItem->itemdata.ItemID.RowName;
+			static const FString ContextString(TEXT("Name"));
+			FItemData *FoundItem = MyDataTable->FindRow<FItemData>(RowName, ContextString);
+			if (FoundItem) {
+				Ch->CurrentMotion = FoundItem->Motion;
+			}
+		}
+		else
 		{
 			Ch->CurrentMotion = EMotion::Default;
 		}
+	}
 }
 
 void UInventoryComponent::ServerAttachItem_Implementation()

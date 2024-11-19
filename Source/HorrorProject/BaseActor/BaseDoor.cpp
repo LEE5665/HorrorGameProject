@@ -91,18 +91,23 @@ void ABaseDoor::Interact()
 			if(isDoorOpen && OpenSound)
 			{
 				FVector Location = GetActorLocation();
-				UGameplayStatics::PlaySoundAtLocation(this, OpenSound, Location);
+				SoundPlay(OpenSound, Location);
 			}
 			if(!isDoorOpen && CloseSound)
 			{
 				FVector Location = GetActorLocation();
-				UGameplayStatics::PlaySoundAtLocation(this, CloseSound, Location);
+				SoundPlay(OpenSound, Location);
 			}
 		}		
     }
 }
 
-void ABaseDoor::GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const
+void ABaseDoor::SoundPlay_Implementation(USoundBase* Sound, FVector Location)
+{
+	UGameplayStatics::PlaySoundAtLocation(this, Sound, Location);
+}
+
+void ABaseDoor::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const
 {
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     DOREPLIFETIME(ABaseDoor, isDoorOpen);

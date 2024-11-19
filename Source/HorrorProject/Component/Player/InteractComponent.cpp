@@ -21,7 +21,6 @@ UInteractComponent::UInteractComponent()
 void UInteractComponent::BeginPlay()
 {
     Super::BeginPlay();
-
     AActor *Owner = GetOwner();
     if (Owner)
     {
@@ -84,6 +83,9 @@ void UInteractComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
                     {
                         if(DoorActor->isLock == true)
                             InteractionWidget->OnTextChange(FName("Lock"));
+                        else {
+                            InteractionWidget->OnTextChange(FName("o"));
+                        }
                     }
                     InteractionWidget->SetVisibility(ESlateVisibility::Visible);
                 }

@@ -13,6 +13,7 @@ ABaseItem::ABaseItem()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	bReplicates = true;
 }
 
 // Called when the game starts or when spawned
@@ -58,7 +59,7 @@ void ABaseItem::AddItem(AActor *inventoryOwner)
 					if (InventoryComp->Inventory[i].Itemcount < SlotCount)
 					{
 						int32 AvailableSpace = SlotCount - InventoryComp->Inventory[i].Itemcount;
-						int32 AddAmount = FMath::Min(itemdata.Itemcount, AvailableSpace);
+						int32 AddAmount = 1;
 
 						InventoryComp->Inventory[i].Itemcount += AddAmount;
 						itemdata.Itemcount -= AddAmount;
@@ -75,6 +76,8 @@ void ABaseItem::AddItem(AActor *inventoryOwner)
 								Ch->InventoryComponent->DropItem(Ch->SelectInventory, false);
 								InventoryComp->ServerAttachItem();
 								UE_LOG(LogTemp, Warning, TEXT("남의 아이템 뺏음!"));
+								InventoryComp->reloadinventory();
+								return;
 							}
 							InventoryComp->reloadinventory();
 							Destroy();
@@ -95,14 +98,16 @@ void ABaseItem::AddItem(AActor *inventoryOwner)
 						InventoryComp->Inventory[i].Maxbattery = IBattery::Execute_GetMaxBatteryLevel(this);
 						InventoryComp->Inventory[i].Currentbattery = IBattery::Execute_GetBatteryLevel(this);
 						UE_LOG(LogTemp,Warning,TEXT("Max %d Current %d"), IBattery::Execute_GetMaxBatteryLevel(this), IBattery::Execute_GetBatteryLevel(this));
-						AActor *ItemOwner = GetOwner();
-						if(Owner)
-						{
-							ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(ItemOwner);
-							Ch->InventoryComponent->DropItem(Ch->SelectInventory, false);
-							InventoryComp->ServerAttachItem();
-							UE_LOG(LogTemp,Warning,TEXT("남의 아이템 뺏음!"));
-						}
+					}
+					AActor *ItemOwner = GetOwner();
+					if (Owner)
+					{
+						ATP_ThirdPersonCharacter *Ch = Cast<ATP_ThirdPersonCharacter>(ItemOwner);
+						Ch->InventoryComponent->DropItem(Ch->SelectInventory, false);
+						InventoryComp->ServerAttachItem();
+						UE_LOG(LogTemp, Warning, TEXT("남의 아이템 뺏음!"));
+						InventoryComp->reloadinventory();
+						return;
 					}
 					InventoryComp->reloadinventory();
 					Destroy();
