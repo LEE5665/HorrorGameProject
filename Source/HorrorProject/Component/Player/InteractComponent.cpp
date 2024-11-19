@@ -78,11 +78,14 @@ void UInteractComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
                 if (HitResult.GetComponent()->ComponentHasTag(FName("Hit")))
                 {
                     nHitActor = HitResult;
-                    InteractionWidget->SetVisibility(ESlateVisibility::Visible);
                     AActor *HitActor = nHitActor.GetActor();
                     ABaseDoor *DoorActor = Cast<ABaseDoor>(HitActor);
-                    if(DoorActor->isLock == true)
-                        InteractionWidget->OnTextChange(FName("Lock"));
+                    if(DoorActor)
+                    {
+                        if(DoorActor->isLock == true)
+                            InteractionWidget->OnTextChange(FName("Lock"));
+                    }
+                    InteractionWidget->SetVisibility(ESlateVisibility::Visible);
                 }
                 else
                 {
