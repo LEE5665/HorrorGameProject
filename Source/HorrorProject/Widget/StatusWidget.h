@@ -15,9 +15,6 @@ class HORRORPROJECT_API UStatusWidget : public UUserWidget
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintImplementableEvent, Category = "Inventory")
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Status")
     void OnStatusUpdated();
-	void SetActor(AActor* Actor);
-	UPROPERTY(BlueprintReadWrite)
-	AActor* Player;
 };

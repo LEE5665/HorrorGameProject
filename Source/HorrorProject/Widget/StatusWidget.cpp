@@ -3,8 +3,3 @@
 
 #include "StatusWidget.h"
 
-void UStatusWidget::SetActor(AActor* Actor)
-{
-    Player = Actor;
-}
-

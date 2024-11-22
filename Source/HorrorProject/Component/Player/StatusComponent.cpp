@@ -35,7 +35,6 @@ void UStatusComponent::BeginPlay()
 					StatusWidget = CreateWidget<UStatusWidget>(PlayerController, StatusWidgetClass);
 					if (StatusWidget)
 					{
-						StatusWidget->SetActor(GetOwner());
 						StatusWidget->AddToViewport();
 					}
 				}
@@ -64,7 +63,6 @@ void UStatusComponent::GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& O
 
 void UStatusComponent::RunStatus_Implementation(bool Set)
 {
-	UE_LOG(LogTemp,Warning,TEXT("작동"));
 	ACharacter *CharacterOwner = Cast<ACharacter>(GetOwner());
 	if (CharacterOwner)
 	{

@@ -36,6 +36,7 @@ public:
 	int32 CurrentStamina = 100;
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> StatusWidgetClass;
+	UPROPERTY(BlueprintReadWrite)
 	class UStatusWidget* StatusWidget;
 	UFUNCTION(Server, Reliable, BlueprintCallable)
 	void RunStatus(bool Set);
