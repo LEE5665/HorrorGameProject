@@ -115,3 +115,11 @@ void UStatusComponent::OnRep_IsRun()
 		}
 	}
 }
+
+void UStatusComponent::OnRep_CurrentHealth()
+{
+	if (StatusWidget)
+	{
+		StatusWidget->OnStatusUpdated();
+	}
+}

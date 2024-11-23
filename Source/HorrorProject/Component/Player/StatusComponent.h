@@ -26,7 +26,7 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, replicated)
 	int32 MaxHealth = 100;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, replicated)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, ReplicatedUsing=OnRep_CurrentHealth)
 	int32 CurrentHealth = 100;
 	UPROPERTY(BlueprintReadWrite, ReplicatedUsing=OnRep_IsRun)
 	bool IsRun = false;
@@ -44,6 +44,8 @@ public:
 	class UCharacterMovementComponent* MovementComponent;
 	UFUNCTION()
 	void OnRep_IsRun();
+	UFUNCTION(BlueprintCallable)
+	void OnRep_CurrentHealth();
 
 private:
 	virtual void GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const override;
