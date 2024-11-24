@@ -86,6 +86,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Owner")
 	void SetOwnerToNull();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName Name;
+
 private:
 	virtual void GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const override;
 };

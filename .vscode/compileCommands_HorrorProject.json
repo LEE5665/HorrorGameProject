@@ -784,6 +784,22 @@
 		"directory": "D:\\Task\\UE\\Engine\\UE_5.5\\Engine\\Source"
 	},
 	{
+		"file": "D:\\Task\\GitHub\\HorrorProjectTemp\\Source\\HorrorProject\\Widget\\SpectatorWidget.cpp",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProjectTemp\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Task\\GitHub\\HorrorProjectTemp\\Source\\HorrorProject\\Widget\\SpectatorWidget.h",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Task\\GitHub\\HorrorProjectTemp\\.vscode\\compileCommands_HorrorProject\\HorrorProject.1.rsp"
+		],
+		"directory": "D:\\Task\\UE\\Engine\\UE_5.5\\Engine\\Source"
+	},
+	{
 		"file": "D:\\Task\\GitHub\\HorrorProjectTemp\\Source\\HorrorProject\\Widget\\StatusWidget.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
