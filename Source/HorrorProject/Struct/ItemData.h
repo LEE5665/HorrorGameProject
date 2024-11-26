@@ -54,6 +54,9 @@ public:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Properties")
     FVector AttachScale;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Properties")
+    int32 SellPrice;
     
 
     FItemData()
@@ -67,5 +70,6 @@ public:
         , AttachRotation(FRotator::ZeroRotator)
         , AttachScale(FVector(1.0f, 1.0f, 1.0f))
         , Price(1)
+        , SellPrice(1)
     {}
 };

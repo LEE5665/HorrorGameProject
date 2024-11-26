@@ -1,6 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "../TP_ThirdPerson/TP_ThirdPersonCharacter.h"
+#include "../Component/Player/InventoryComponent.h"
+#include "../Struct/ItemData.h"
+#include "../BaseActor/BaseItem.h"
+#include "../Struct/Item.h"
+#include "Kismet/GameplayStatics.h"
 #include "Store.h"
 
 // Sets default values
@@ -29,5 +34,22 @@ void AStore::Interact_Implementation(AActor *PlayerActor)
 {
 	ATP_ThirdPersonCharacter *Player = Cast<ATP_ThirdPersonCharacter>(PlayerActor);
 	UE_LOG(LogTemp, Log, TEXT("%s"), *Player->GetName());
-	
+	if(Player->InventoryComponent->AttachItem){
+		FItemData *Item = GetRowFromDataTable(Player->InventoryComponent->AttachItem->itemdata.ItemID.RowName);
+		UE_LOG(LogTemp, Log, TEXT("%s"), *Item->Name.ToString());
+		SellItem(Player, Item->SellPrice);
+		Player->InventoryComponent->DropItem(Player->SelectInventory, false);
+	}
+}
+
+FItemData* AStore::GetRowFromDataTable(FName RowName)
+{
+	UDataTable *MyDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/06_Inventory/ItemData/DT_ItemData.DT_ItemData"));
+	static const FString ContextString(TEXT("Name"));
+	FItemData *FoundItem = MyDataTable->FindRow<FItemData>(RowName, ContextString);
+	if(FoundItem) {
+		return FoundItem;
+	} else {
+		return nullptr;
+	}
 }
