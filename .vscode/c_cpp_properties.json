@@ -6,7 +6,7 @@
             "cStandard": "c17",
             "cppStandard": "c++20",
             "intelliSenseMode": "msvc-x64",
-            "compileCommands": "D:\\Task\\GitHub\\HorrorProjectTemp\\.vscode\\compileCommands_HorrorProject.json"
+            "compileCommands": "C:\\Task\\Github\\HorrorProjectTemp\\.vscode\\compileCommands_HorrorProject.json"
         },
         {
             "name": "Win32",
@@ -14,7 +14,7 @@
             "cStandard": "c17",
             "cppStandard": "c++20",
             "intelliSenseMode": "msvc-x64",
-            "compileCommands": "D:\\Task\\GitHub\\HorrorProjectTemp\\.vscode\\compileCommands_Default.json"
+            "compileCommands": "C:\\Task\\Github\\HorrorProjectTemp\\.vscode\\compileCommands_Default.json"
         }
     ],
     "version": 4

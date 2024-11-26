@@ -2,7 +2,7 @@
 
 #include "../../BaseActor/BaseDoor.h"
 #include "../../BaseActor/BaseItem.h"
-
+#include "../../Interface/Interact.h"
 #include "InteractComponent.h"
 #include "GameFramework/Actor.h"
 #include "DrawDebugHelpers.h"
@@ -128,6 +128,9 @@ void UInteractComponent::Interact()
                 // ItemActor->AddItem();
                 UE_LOG(LogTemp, Log, TEXT("Picked up Item!"));
             }
+        }
+        if(HitActor->GetClass()->ImplementsInterface(UInteract::StaticClass())){
+            IInteract::Execute_Interact(HitActor, GetOwner());
         }
     }
 }
